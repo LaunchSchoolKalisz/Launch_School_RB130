@@ -131,7 +131,7 @@ class TodoList
       counter +=1
     end
   end
-  
+
 end
 
 todo1 = Todo.new("Buy milk")
@@ -146,3 +146,21 @@ list.add(todo3)
 list.each do |todo|
   puts todo                   # calls Todo#to_s
 end
+
+=begin
+LS Solution
+class TodoList
+
+  # ... rest of class omitted for brevity
+
+  def each
+    @todos.each do |todo|
+      yield(todo)
+    end
+  end
+
+end
+
+We could have used a while loop (or any other loop, too) but since @todos is an Array, we opted to 
+use Array#each to iterate. We're yielding each element in @todos to the block with the yield keyword.
+=end
