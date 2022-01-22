@@ -33,9 +33,20 @@ class Todo
   end
 end
 
+class TodoList
+  attr_accessor :title
+  
+  def initialize(title)
+    @title = title
+    @todos = []
+  end
+end
+
 todo1 = Todo.new("Buy milk")
 todo2 = Todo.new("Clean room")
 todo3 = Todo.new("Go to gym")
+
+todo1.done!
 
 puts todo1
 puts todo2
