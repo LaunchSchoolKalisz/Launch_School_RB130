@@ -134,7 +134,7 @@ class TodoList
   end
 
   def select
-    new_list = TodoList.new("Selected List")
+    new_list = TodoList.new(title)
     counter = 0
 
     while counter < size
