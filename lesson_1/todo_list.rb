@@ -83,6 +83,11 @@ class TodoList
     end
   end
 
+  def mark_done_at(idx)
+    item = item_at(idx)
+    item.done!
+  end
+
 end
 
 # given
@@ -91,8 +96,8 @@ todo2 = Todo.new("Clean room")
 todo3 = Todo.new("Go to gym")
 list = TodoList.new("Today's Todos")
 
-todo1.done!
-todo2.done!
+# todo1.done!
+# todo2.done!
 # todo3.done!
 
 # ---- Adding to the list -----
@@ -134,7 +139,7 @@ list.item_at(1)                 # returns 2nd item in list (zero based index)
 
 # # mark_done_at
 # list.mark_done_at               # raises ArgumentError
-# list.mark_done_at(1)            # marks the 2nd item as done
+list.mark_done_at(1)            # marks the 2nd item as done
 # list.mark_done_at(100)          # raises IndexError
 
 # # mark_undone_at
