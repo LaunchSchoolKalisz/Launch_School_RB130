@@ -186,4 +186,12 @@ LS Solution for returning a Todo List Object
     end
     list
   end
+
+LS solution for Each method returning the original object
+  def each
+    @todos.each do |todo|
+      yield(todo)
+    end
+    self
+  end
 =end
