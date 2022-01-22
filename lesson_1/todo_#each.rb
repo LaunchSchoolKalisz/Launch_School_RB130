@@ -123,6 +123,15 @@ class TodoList
     end
     text
   end
+
+  def each
+    counter = 0
+    while counter < size
+      yield(item_at(counter))
+      counter +=1
+    end
+  end
+  
 end
 
 todo1 = Todo.new("Buy milk")
