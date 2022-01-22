@@ -138,7 +138,7 @@ class TodoList
 
     while counter < size
       current_item = item_at(counter)
-      new_ary << current_item if yield(current_item) == true
+      new_ary << current_item if yield(current_item)
       counter += 1
     end
     new_ary
@@ -159,3 +159,19 @@ todo1.done!
 results = list.select { |todo| todo.done? }    # you need to implement this method
 
 puts results.inspect
+
+=begin
+class TodoList
+
+  # ... rest of class omitted for brevity
+
+  def select
+    results = []
+    each do |todo|
+      results << todo if yield(todo)
+    end
+    results
+  end
+
+end
+=end
