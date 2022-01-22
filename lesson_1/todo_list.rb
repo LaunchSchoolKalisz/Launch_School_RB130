@@ -88,6 +88,11 @@ class TodoList
     item.done!
   end
 
+  def mark_undone_at(idx)
+    item = item_at(idx)
+    item.undone!
+  end
+
 end
 
 # given
@@ -144,7 +149,7 @@ list.mark_done_at(1)            # marks the 2nd item as done
 
 # # mark_undone_at
 # list.mark_undone_at             # raises ArgumentError
-# list.mark_undone_at(1)          # marks the 2nd item as not done,
+list.mark_undone_at(1)          # marks the 2nd item as not done,
 # list.mark_undone_at(100)        # raises IndexError
 
 # # done!
