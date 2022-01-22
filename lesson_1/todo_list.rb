@@ -100,7 +100,10 @@ class TodoList
   def shift
     todos.shift
   end
-
+  
+  def pop
+    todos.pop
+  end
 end
 
 # given
@@ -173,7 +176,7 @@ list.shift                      # removes and returns the first item in list
 
 # # pop
 list.pop                        # removes and returns the last item in list
-p list
+# p list
 
 # # remove_at
 # list.remove_at                  # raises ArgumentError
