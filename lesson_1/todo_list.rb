@@ -93,6 +93,10 @@ class TodoList
     item.undone!
   end
 
+  def done!
+    (0...todos.size).to_a.each {|num| mark_done_at(num)}
+  end
+
 end
 
 # given
@@ -153,7 +157,8 @@ list.mark_undone_at(1)          # marks the 2nd item as not done,
 # list.mark_undone_at(100)        # raises IndexError
 
 # # done!
-# list.done!                      # marks all items as done
+list.done!                      # marks all items as done
+# p list
 
 # # ---- Deleting from the list -----
 
