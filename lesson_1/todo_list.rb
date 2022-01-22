@@ -58,6 +58,14 @@ class TodoList
     todos.size
   end
 
+  def first
+    todos[0]
+  end
+
+  def last 
+    todos[-1]
+  end
+
 end
 
 # given
@@ -83,10 +91,10 @@ list.add(todo3)                 # adds todo3 to end of list, returns list
 list.size                       # returns 3
 
 # # first
-# list.first                      # returns todo1, which is the first item in the list
+p list.first                      # returns todo1, which is the first item in the list
 
 # # last
-# list.last                       # returns todo3, which is the last item in the list
+p list.last                       # returns todo3, which is the last item in the list
 
 # #to_a
 # list.to_a                      # returns an array of all items in the list
