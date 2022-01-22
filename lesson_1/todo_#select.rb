@@ -131,6 +131,18 @@ class TodoList
       counter +=1
     end
   end
+
+  def select
+    new_ary = []
+    counter = 0
+
+    while counter < size
+      current_item = item_at(counter)
+      new_ary << current_item if yield(current_item) == true
+      counter += 1
+    end
+    new_ary
+  end
 end
 
 todo1 = Todo.new("Buy milk")
