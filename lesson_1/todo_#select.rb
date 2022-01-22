@@ -133,15 +133,15 @@ class TodoList
   end
 
   def select
-    new_ary = []
+    new_list = TodoList.new("Selected List")
     counter = 0
 
     while counter < size
       current_item = item_at(counter)
-      new_ary << current_item if yield(current_item)
+      new_list << current_item if yield(current_item)
       counter += 1
     end
-    new_ary
+    new_list
   end
 end
 
