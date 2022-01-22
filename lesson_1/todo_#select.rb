@@ -161,6 +161,8 @@ results = list.select { |todo| todo.done? }    # you need to implement this meth
 puts results.inspect
 
 =begin
+LS Solution
+
 class TodoList
 
   # ... rest of class omitted for brevity
@@ -174,4 +176,13 @@ class TodoList
   end
 
 end
+
+LS Solution for returning a Todo List Object
+  def select
+    list = TodoList.new(title)
+    each do |todo|
+      list.add(todo) if yield(todo)
+    end
+    list
+  end
 =end
