@@ -8,3 +8,8 @@ def times(number)
 
   number
 end
+
+# method invocation
+times(5) do |num|
+  puts num
+end
