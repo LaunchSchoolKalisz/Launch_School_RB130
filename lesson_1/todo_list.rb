@@ -110,6 +110,19 @@ class TodoList
     todos.delete_at(idx)
     item
   end
+
+  def to_s
+    text = <<~HEREDOC
+    "---- #{title} ----" 
+    HEREDOC
+
+
+    todos.each do |item| 
+      text << item.to_s
+      text << "\n"
+    end
+    text
+  end
 end
 
 # given
@@ -193,7 +206,7 @@ list.remove_at(1)               # removes and returns the 2nd item
 # # ---- Outputting the list -----
 
 # # to_s
-# list.to_s                      # returns string representation of the list
+list.to_s                      # returns string representation of the list
 
 # # ---- Today's Todos ----
 # # [ ] Buy milk
