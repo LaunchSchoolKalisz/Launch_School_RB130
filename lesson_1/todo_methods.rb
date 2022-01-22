@@ -144,6 +144,13 @@ class TodoList
     end
     new_list
   end
+
+  def find_by_title(search_term)
+    todos.each do |todo|
+      return todo if todo.title == search_term
+    end
+    nil
+  end
 end
 
 todo1 = Todo.new("Buy milk")
@@ -155,6 +162,5 @@ list.add(todo1)
 list.add(todo2)
 list.add(todo3)
 
-results = list.select { |todo| todo.done? }    # you need to implement this method
-
-puts results.inspect
+search = list.find_by_title("Clean room")
+p search
