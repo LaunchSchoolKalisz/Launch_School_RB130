@@ -104,6 +104,12 @@ class TodoList
   def pop
     todos.pop
   end
+
+  def remove_at(idx)
+    item = item_at(idx)
+    todos.delete_at(idx)
+    item
+  end
 end
 
 # given
@@ -170,17 +176,18 @@ list.done!                      # marks all items as done
 # # ---- Deleting from the list -----
 
 # # shift
-list.shift                      # removes and returns the first item in list
+# list.shift                      # removes and returns the first item in list
 # p list
 
 
 # # pop
-list.pop                        # removes and returns the last item in list
+# list.pop                        # removes and returns the last item in list
 # p list
 
 # # remove_at
 # list.remove_at                  # raises ArgumentError
-# list.remove_at(1)               # removes and returns the 2nd item
+list.remove_at(1)               # removes and returns the 2nd item
+# p list
 # list.remove_at(100)             # raises IndexError
 
 # # ---- Outputting the list -----
