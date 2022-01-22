@@ -130,6 +130,7 @@ class TodoList
       yield(item_at(counter))
       counter +=1
     end
+    self
   end
 
   def select
