@@ -36,3 +36,21 @@ end
 Note that we used a while loop here, but since we are expecting an Array object as the parameter, we 
 could have as well used the Array#each to iterate.
 =end
+
+# Further exploration: default initial value is the first element of the collection rather than 0
+
+def reduce(array, default = array[0])
+  accumulator = default
+  counter = 1
+  while counter < array.size
+    num = array[counter]
+    accumulator = yield(accumulator, num)
+    counter += 1
+  end
+  accumulator
+end
+
+array = [1, 2, 3, 4, 5]
+
+p reduce(['a', 'b', 'c']) { |acc, value| acc += value }     # => 'abc'
+p reduce([[1, 2], ['a', 'b']]) { |acc, value| acc + value } # => [1, 2, 'a', 'b']
