@@ -172,53 +172,53 @@ list.item_at(1)                 # returns 2nd item in list (zero based index)
 
 # ---- Marking items in the list -----
 
-# # mark_done_at
+# mark_done_at
 # list.mark_done_at               # raises ArgumentError
 list.mark_done_at(1)            # marks the 2nd item as done
 # list.mark_done_at(100)          # raises IndexError
 
-# # mark_undone_at
+# mark_undone_at
 # list.mark_undone_at             # raises ArgumentError
 list.mark_undone_at(1)          # marks the 2nd item as not done,
 # list.mark_undone_at(100)        # raises IndexError
 
-# # done!
+# done!
 list.done!                      # marks all items as done
 # p list
 
 # # ---- Deleting from the list -----
 
-# # shift
+# shift
 # list.shift                      # removes and returns the first item in list
 # p list
 
 
-# # pop
+# pop
 # list.pop                        # removes and returns the last item in list
 # p list
 
-# # remove_at
+# remove_at
 # list.remove_at                  # raises ArgumentError
 list.remove_at(1)               # removes and returns the 2nd item
 # p list
 # list.remove_at(100)             # raises IndexError
 
-# # ---- Outputting the list -----
+# ---- Outputting the list -----
 
-# # to_s
+# to_s
 list.to_s                      # returns string representation of the list
 
-# # ---- Today's Todos ----
-# # [ ] Buy milk
-# # [ ] Clean room
-# # [ ] Go to gym
+# ---- Today's Todos ----
+# [ ] Buy milk
+# [ ] Clean room
+# [ ] Go to gym
 
-# # or, if any todos are done
+# or, if any todos are done
 
-# # ---- Today's Todos ----
-# # [ ] Buy milk
-# # [X] Clean room
-# # [ ] Go to gym
+# ---- Today's Todos ----
+# [ ] Buy milk
+# [X] Clean room
+# [ ] Go to gym
 
 todo1 = Todo.new("Buy milk")
 todo2 = Todo.new("Clean room")
