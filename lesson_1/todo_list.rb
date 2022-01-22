@@ -97,6 +97,10 @@ class TodoList
     (0...todos.size).to_a.each {|num| mark_done_at(num)}
   end
 
+  def shift
+    todos.shift
+  end
+
 end
 
 # given
@@ -163,10 +167,13 @@ list.done!                      # marks all items as done
 # # ---- Deleting from the list -----
 
 # # shift
-# list.shift                      # removes and returns the first item in list
+list.shift                      # removes and returns the first item in list
+# p list
+
 
 # # pop
-# list.pop                        # removes and returns the last item in list
+list.pop                        # removes and returns the last item in list
+p list
 
 # # remove_at
 # list.remove_at                  # raises ArgumentError
