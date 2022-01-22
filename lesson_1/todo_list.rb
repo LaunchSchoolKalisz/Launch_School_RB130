@@ -70,6 +70,11 @@ class TodoList
     todos
   end
 
+  def done?
+    return true if todos.all? {|todo| todo.done?}
+    false
+  end
+
 end
 
 # given
@@ -77,6 +82,10 @@ todo1 = Todo.new("Buy milk")
 todo2 = Todo.new("Clean room")
 todo3 = Todo.new("Go to gym")
 list = TodoList.new("Today's Todos")
+
+todo1.done!
+todo2.done!
+# todo3.done!
 
 # # ---- Adding to the list -----
 
@@ -104,7 +113,7 @@ list.last                       # returns todo3, which is the last item in the l
 list.to_a                      # returns an array of all items in the list
 
 # #done?
-list.done?                     # returns true if all todos in the list are done, otherwise false
+p list.done?                     # returns true if all todos in the list are done, otherwise false
 
 # # ---- Retrieving an item in the list ----
 
