@@ -2,7 +2,7 @@ require 'minitest/autorun'
 require "minitest/reporters"
 Minitest::Reporters.use!
 
-require_relative 'todolist'
+require_relative 'todo_list'
 
 class TodoListTest < MiniTest::Test
 
@@ -19,5 +19,7 @@ class TodoListTest < MiniTest::Test
   end
 
   # Your tests go here. Remember they must start with "test_"
-
+  def test_to_a
+    assert_equal(@todos, @list.to_a)
+  end
 end
