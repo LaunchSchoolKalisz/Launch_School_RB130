@@ -52,7 +52,10 @@ class TodoListTest < MiniTest::Test
   end
 
   def test_add_err
-    assert_raises(TypeError) { |todo| @list << "Not a todo" }
+    assert_raises(TypeError) { |todo| @list.add("Not a todo") }
+    assert_raises(TypeError) { |todo| @list.add(12) }
+    assert_raises(TypeError) { |todo| @list.add([1, 2, 3]) }
+    assert_raises(TypeError) { |todo| @list.add(Object.new) }
   end
 end
 
