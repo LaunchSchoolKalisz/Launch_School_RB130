@@ -82,4 +82,10 @@ def test_pop
   assert_equal([@todo1, @todo2], @list.to_a)
 end
 
+def test_done_question
+  assert_equal(false, @list.done?)
+end
+Note that the above only tests 1 scenario. You are free to also test the 
+true scenario here, but we cover that later.
+
 =end
