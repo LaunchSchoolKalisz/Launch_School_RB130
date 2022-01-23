@@ -153,12 +153,21 @@ class TodoList
   end
 
   def all_done
-    completed = TodoList.new(title + " - Completed")
+    completed = TodoList.new(title + " - Done")
 
     each do |item|
       completed << item if item.done?
     end
     completed
+  end
+
+  def all_not_done
+    not_completed = TodoList.new(title + " - Not Yet Done")
+
+    each do |item|
+      not_completed << item if item.done? == false
+    end
+    not_completed
   end
 end
 
@@ -175,4 +184,4 @@ list.add(todo3)
 
 list.mark_done_at(1)
 
-p list.all_done
+p list.all_not_done
