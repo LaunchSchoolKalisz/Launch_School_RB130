@@ -291,4 +291,10 @@ def test_to_s_3
   assert_equal(output, @list.to_s)
 end
 
+def test_each
+  result = []
+  @list.each { |todo| result << todo }
+  assert_equal([@todo1, @todo2, @todo3], result)
+end
+
 =end
