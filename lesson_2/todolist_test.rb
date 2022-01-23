@@ -153,6 +153,12 @@ class TodoListTest < MiniTest::Test
     assert_equal(true, @todo2.done?)
     assert_equal(true, @list.done?)
   end
+
+  def test_each_return_value
+    new_ary = []
+    return_value = @list.each {|item| new_ary << item}
+    assert_equal(@todos, return_value.to_a)
+  end
 end
 
 =begin
