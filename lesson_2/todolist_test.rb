@@ -124,4 +124,12 @@ def test_shovel
 
   assert_equal(@todos, @list.to_a)
 end
+
+def test_add_alias
+  new_todo = Todo.new("Feed the cat")
+  @list.add(new_todo)
+  @todos << new_todo
+
+  assert_equal(@todos, @list.to_a)
+end
 =end
