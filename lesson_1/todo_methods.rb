@@ -151,7 +151,18 @@ class TodoList
     end
     nil
   end
+
+  def all_done
+    completed = TodoList.new(title + " - Completed")
+
+    each do |item|
+      completed << item if item.done?
+    end
+    completed
+  end
 end
+
+
 
 todo1 = Todo.new("Buy milk")
 todo2 = Todo.new("Clean room")
@@ -162,5 +173,6 @@ list.add(todo1)
 list.add(todo2)
 list.add(todo3)
 
-search = list.find_by_title("Clean room")
-p search
+list.mark_done_at(1)
+
+p list.all_done
