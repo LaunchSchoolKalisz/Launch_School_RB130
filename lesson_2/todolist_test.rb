@@ -47,7 +47,7 @@ class TodoListTest < MiniTest::Test
     assert_equal([@todo1, @todo2], @list.to_a)
   end
 
-  def test_done?
+  def test_done_question
     assert_equal(false, @list.done?)
   end
 
@@ -95,7 +95,7 @@ class TodoListTest < MiniTest::Test
     assert_equal(false, @todo2.done?)
   end
 
-  def test_done!
+  def test_done_bang
     @list.done!
     assert_equal(true, @todo1.done?)
     assert_equal(true, @todo2.done?)
