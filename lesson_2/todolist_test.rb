@@ -56,4 +56,15 @@ end
 def test_last
   assert_equal(@todo3, @list.last)
 end
+
+def test_shift
+  todo = @list.shift
+  assert_equal(@todo1, todo)
+  assert_equal([@todo2, @todo3], @list.to_a)
+end
+Notice how we're using the TodoList#to_a so we can compare the lists. Note 
+that had we implemented a TodoList#==, we could have compared two TodoList 
+objects instead of arrays.
+
+
 =end
