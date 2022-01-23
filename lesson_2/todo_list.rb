@@ -112,15 +112,8 @@ class TodoList
   end
 
   def to_s
-    text = <<~HEREDOC
-    "---- #{title} ----" 
-    HEREDOC
-
-
-    todos.each do |item| 
-      text << item.to_s
-      text << "\n"
-    end
+    text = "---- #{title} ----\n"
+    text << @todos.map(&:to_s).join("\n")
     text
   end
 
