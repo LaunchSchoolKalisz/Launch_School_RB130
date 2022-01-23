@@ -24,6 +24,15 @@ class TodoListTest < MiniTest::Test
   end
 
   def test_size
-    assert_equal(@todos.size, @list.size )
+    assert_equal(@todos.size, @list.size)
   end
 end
+
+=begin
+LS Solutions
+
+def test_size
+  assert_equal(3, @list.size)
+end
+
+=end
