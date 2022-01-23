@@ -50,6 +50,10 @@ class TodoListTest < MiniTest::Test
   def test_done?
     assert_equal(false, @list.done?)
   end
+
+  def test_add_err
+    assert_raises(TypeError) { |todo| @list << "Not a todo" }
+  end
 end
 
 =begin
