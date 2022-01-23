@@ -164,6 +164,12 @@ class TodoList
   def all_not_done
     select {|item| item.done? == false}
   end
+
+  def mark_done(title)
+    object = find_by_title(title)
+    object.done!
+  end
+
 end
 
 
@@ -177,6 +183,7 @@ list.add(todo1)
 list.add(todo2)
 list.add(todo3)
 
-list.mark_done_at(1)
+list.mark_done("Buy milk")
+p list
 
-p list.all_not_done
+
