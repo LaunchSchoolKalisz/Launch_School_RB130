@@ -101,6 +101,13 @@ class TodoListTest < MiniTest::Test
     assert_equal(true, @todo2.done?)
     assert_equal(true, @todo2.done?)
   end
+
+  def test_remove_at
+    assert_raises(IndexError) { @list.remove_at(50000) }
+    item = @list.remove_at(0)
+    assert_equal(@todo1, item)
+    assert_equal([@todo2, @todo3], @list.to_a)
+  end
 end
 
 =begin
@@ -196,5 +203,11 @@ def test_done_bang
   assert_equal(true, @todo2.done?)
   assert_equal(true, @todo3.done?)
   assert_equal(true, @list.done?)
+end
+
+def test_remove_at
+  assert_raises(IndexError) { @list.remove_at(100) }
+  @list.remove_at(1)
+  assert_equal([@todo1, @todo3], @list.to_a)
 end
 =end
