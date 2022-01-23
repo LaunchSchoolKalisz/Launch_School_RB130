@@ -46,4 +46,8 @@ end
 def test_first
   assert_equal(@todo1, @list.first)
 end
+
+def test_last
+  assert_equal(@todo3, @list.last)
+end
 =end
