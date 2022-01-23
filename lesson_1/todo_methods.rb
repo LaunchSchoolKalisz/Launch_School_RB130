@@ -170,6 +170,13 @@ class TodoList
     object.done!
   end
 
+  def mark_all_done
+    each {|object| object.done!}
+  end
+
+  def mark_all_undone
+    each {|object| object.undone!}
+  end
 end
 
 
@@ -183,7 +190,8 @@ list.add(todo1)
 list.add(todo2)
 list.add(todo3)
 
-list.mark_done("Buy milk")
+list.mark_all_undone
+list.mark_all_undone
 p list
 
 
