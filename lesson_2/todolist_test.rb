@@ -138,4 +138,10 @@ def test_add_alias
 
   assert_equal(@todos, @list.to_a)
 end
+
+def test_item_at
+  assert_raises(IndexError) { @list.item_at(100) }
+  assert_equal(@todo1, @list.item_at(0))
+  assert_equal(@todo2, @list.item_at(1))
+end
 =end
