@@ -21,3 +21,22 @@ end
 p compute { 5 + 3 } == 8
 p compute { 'a' + 'b' } == 'ab'
 p compute == 'Does not compute.'
+
+=begin
+LS Solution
+Solution
+
+def compute
+  return 'Does not compute.' unless block_given?
+  yield
+end
+
+Discussion
+The Kernel#block_given? method can be used to determine if a block has been passed to a method, even if 
+there is no mention of a block in the method arguments. We use it here to detect when we should return 
+'Does not compute.', and when we should return the value yielded by the block.
+
+Further Exploration
+Modify the compute method so it takes a single argument and yields that argument to the block. Provide at 
+least 3 examples of calling this new version of compute, including a no-block call.
+=end
