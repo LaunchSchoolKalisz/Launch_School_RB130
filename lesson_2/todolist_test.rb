@@ -117,6 +117,7 @@ class TodoListTest < MiniTest::Test
     [ ] Clean room
     [ ] Go to gym
     OUTPUT
+
     assert_equal(output, @list.to_s)
   end
 end
@@ -220,6 +221,17 @@ def test_remove_at
   assert_raises(IndexError) { @list.remove_at(100) }
   @list.remove_at(1)
   assert_equal([@todo1, @todo3], @list.to_a)
+end
+
+def test_to_s
+  output = <<-OUTPUT.chomp.gsub /^\s+/, ""
+  ---- Today's Todos ----
+  [ ] Buy milk
+  [ ] Clean room
+  [ ] Go to gym
+  OUTPUT
+
+  assert_equal(output, @list.to_s)
 end
 
 
