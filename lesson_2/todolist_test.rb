@@ -57,6 +57,10 @@ class TodoListTest < MiniTest::Test
     assert_raises(TypeError) { |todo| @list.add([1, 2, 3]) }
     assert_raises(TypeError) { |todo| @list.add(Object.new) }
   end
+
+  def test_shovel
+    assert_equal(@list.add(@todo1), @list << @todo1)
+  end
 end
 
 =begin
@@ -102,4 +106,12 @@ end
 Note that we chose to go with two assertions here to verify an integer and 
 string, respectively, generates an error. To be extra safe, you can add even 
 more.
+
+def test_shovel
+  new_todo = Todo.new("Walk the dog")
+  @list << new_todo
+  @todos << new_todo
+
+  assert_equal(@todos, @list.to_a)
+end
 =end
