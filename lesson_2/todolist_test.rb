@@ -189,4 +189,12 @@ def test_mark_undone_at
   assert_equal(false, @todo2.done?)
   assert_equal(true, @todo3.done?)
 end
+
+def test_done_bang
+  @list.done!
+  assert_equal(true, @todo1.done?)
+  assert_equal(true, @todo2.done?)
+  assert_equal(true, @todo3.done?)
+  assert_equal(true, @list.done?)
+end
 =end
