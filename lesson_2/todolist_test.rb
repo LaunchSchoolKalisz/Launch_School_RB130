@@ -52,10 +52,10 @@ class TodoListTest < MiniTest::Test
   end
 
   def test_add_err
-    assert_raises(TypeError) { |todo| @list.add("Not a todo") }
-    assert_raises(TypeError) { |todo| @list.add(12) }
-    assert_raises(TypeError) { |todo| @list.add([1, 2, 3]) }
-    assert_raises(TypeError) { |todo| @list.add(Object.new) }
+    assert_raises(TypeError) { @list.add("Not a todo") }
+    assert_raises(TypeError) { @list.add(12) }
+    assert_raises(TypeError) { @list.add([1, 2, 3]) }
+    assert_raises(TypeError) { @list.add(Object.new) }
   end
 
   def test_shovel
@@ -70,6 +70,12 @@ class TodoListTest < MiniTest::Test
     @list.add(new_todo)
     @todos << new_todo
     assert_equal(@todos, @list.to_a)
+  end
+
+  def test_item_at
+    assert_raises(IndexError) { @list.item_at(50000) }
+    assert_equal(@todo1, @list.item_at(0))
+    assert_equal(@todo2, @list.item_at(1))
   end
 end
 
