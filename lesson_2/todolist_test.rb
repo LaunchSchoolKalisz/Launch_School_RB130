@@ -145,6 +145,14 @@ class TodoListTest < MiniTest::Test
 
     assert_equal(output, @list.to_s)
   end
+
+  def test_each
+    @list.each {|item| item.done!}
+    assert_equal(true, @todo1.done?)
+    assert_equal(true, @todo2.done?)
+    assert_equal(true, @todo2.done?)
+    assert_equal(true, @list.done?)
+  end
 end
 
 =begin
