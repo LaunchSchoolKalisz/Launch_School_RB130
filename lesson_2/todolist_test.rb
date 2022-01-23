@@ -34,6 +34,12 @@ class TodoListTest < MiniTest::Test
   def test_last
     assert_equal(@todo3, @list.last)
   end
+
+  def test_shift
+    object = @list.shift
+    assert_equal(@todo1, object)
+    assert_equal([@todo2, @todo3], @list.to_a)
+  end
 end
 
 =begin
