@@ -159,6 +159,15 @@ class TodoListTest < MiniTest::Test
     return_value = @list.each {|item| new_ary << item}
     assert_equal(@todos, return_value.to_a)
   end
+
+  def test_select
+    @todo1.done!
+    list = TodoList.new(@list.title)
+    list.add(@todo1)
+  
+    assert_equal(list.title, @list.title)
+    assert_equal(list.to_s, @list.select{ |todo| todo.done? }.to_s)
+  end
 end
 
 =begin
