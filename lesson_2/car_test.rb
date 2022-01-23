@@ -1,4 +1,6 @@
 require 'minitest/autorun'
+require "minitest/reporters"
+MiniTest::Reporters.use!
 
 require_relative 'car'
 
@@ -9,6 +11,7 @@ class CarTest < MiniTest::Test
   end
 
   def test_bad_wheels
+    skip
     car = Car.new
     assert_equal(3, car.wheels)
   end
