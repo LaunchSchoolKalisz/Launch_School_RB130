@@ -92,4 +92,11 @@ end
 Note that the above only tests 1 scenario. You are free to also test the 
 true scenario here, but we cover that later.
 
+def test_add_raise_error
+  assert_raises(TypeError) { @list.add(1) }
+  assert_raises(TypeError) { @list.add('hi') }
+end
+Note that we chose to go with two assertions here to verify an integer and 
+string, respectively, generates an error. To be extra safe, you can add even 
+more.
 =end
