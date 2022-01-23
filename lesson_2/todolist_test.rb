@@ -303,4 +303,10 @@ def test_each
   assert_equal([@todo1, @todo2, @todo3], result)
 end
 
+def test_each_returns_original_list
+  assert_equal(@list, @list.each {|todo| nil })
+end
+Note that we don't actually want to perform any action when we iterate, 
+so we have a nil as a placeholder.
+
 =end
