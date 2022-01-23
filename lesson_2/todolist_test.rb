@@ -72,5 +72,10 @@ Notice how we're using the TodoList#to_a so we can compare the lists. Note
 that had we implemented a TodoList#==, we could have compared two TodoList 
 objects instead of arrays.
 
+def test_pop
+  todo = @list.pop
+  assert_equal(@todo3, todo)
+  assert_equal([@todo1, @todo2], @list.to_a)
+end
 
 =end
