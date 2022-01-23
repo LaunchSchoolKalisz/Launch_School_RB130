@@ -162,12 +162,7 @@ class TodoList
   end
 
   def all_not_done
-    not_completed = TodoList.new(title + " - Not Yet Done")
-
-    each do |item|
-      not_completed << item if item.done? == false
-    end
-    not_completed
+    select {|item| item.done? == false}
   end
 end
 
