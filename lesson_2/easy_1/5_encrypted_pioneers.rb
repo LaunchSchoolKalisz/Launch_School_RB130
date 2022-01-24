@@ -26,3 +26,55 @@ Tregehqr Oynapu
 
 Write a program that deciphers and prints each of these names .
 =end
+
+ALPHABET = ('a'..'z').to_a
+UPPERALPHA = ('A'..'Z').to_a
+
+def decipher(name)
+  letters = name.split('')
+  deciphered = []
+  letters.each do |letter|
+    if ALPHABET.include?(letter)
+      og_index = ALPHABET.index(letter)
+      new_index = og_index + 13
+      if new_index < 25
+        deciphered << ALPHABET[new_index]
+      else
+        deciphered << ALPHABET[new_index - 26]
+      end
+    elsif UPPERALPHA.include?(letter)
+      og_index = UPPERALPHA.index(letter)
+      new_index = og_index + 13
+      if new_index < 25
+        deciphered << UPPERALPHA[new_index]
+      else
+        deciphered << UPPERALPHA[new_index - 26]
+      end
+    else
+      deciphered << letter
+    end
+  end
+  deciphered_name = deciphered.join
+end
+
+
+
+p decipher('Nqn Ybirynpr') == "Ada Lovelace"
+p decipher('Noqhyynu Zhunzznq ova Zhfn ny-Xujnevmzv') 
+p decipher('Tenpr Ubccre')
+p decipher('Nqryr Tbyqfgvar')
+p decipher('Nyna Ghevat')
+p decipher('Puneyrf Onoontr')
+p decipher('Wbua Ngnanfbss')
+p decipher('Ybvf Unvog')
+p decipher('Pynhqr Funaaba')
+p decipher('Fgrir Wbof')
+p decipher('Ovyy Tngrf')
+p decipher('Gvz Orearef-Yrr')
+p decipher('Fgrir Jbmavnx')
+p decipher('Xbaenq Mhfr')
+p decipher('Fve Nagbal Ubner')
+p decipher('Zneiva Zvafxl')
+p decipher('Lhxvuveb Zngfhzbgb')
+p decipher('Unllvz Fybavzfxv')
+p decipher('Tregehqr Oynapu')
