@@ -45,3 +45,23 @@ p any?([1, 3, 5, 7]) { |value| value % 5 == 0 } == true
 p any?([1, 3, 5, 7]) { |value| true } == true
 p any?([1, 3, 5, 7]) { |value| false } == false
 p any?([]) { |value| true } == false
+
+=begin
+LS Solution
+
+def any?(collection)
+  collection.each { |item| return true if yield(item) }
+  false
+end
+
+Discussion
+Our solution simply iterates through our collection, and returns true the first time it encounters an item 
+that produces a true result when it is yielded to the block. If no such item is encountered, we return false.
+
+Further Exploration
+Our solution uses Enumerable#each for the main loop. The advantage of doing this is that any? will work 
+with any Enumerable collection, including Arrays, Hashes, Sets, and more. So, even though we only need 
+any? to work with Arrays, we get additional functionality for free.
+
+Does your solution work with other collections like Hashes or Sets?
+=end
