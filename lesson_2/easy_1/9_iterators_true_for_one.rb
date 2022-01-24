@@ -43,3 +43,33 @@ p one?([1, 3, 5, 7]) { |value| value % 5 == 0 } # -> true
 p one?([1, 3, 5, 7]) { |value| true }           # -> false
 p one?([1, 3, 5, 7]) { |value| false }          # -> false
 p one?([]) { |value| true }                     # -> false
+
+=begin
+LS Solution
+
+def one?(collection)
+  seen_one = false
+  collection.each do |element|
+    next unless yield(element)
+    return false if seen_one
+    seen_one = true
+  end
+  seen_one
+end
+
+Discussion
+This exercise is the most difficult of the 4 in this cluster; the complication of wanting to find exactly 
+one makes this more complicated than the others. We could conceivably use Array#count, but count looks 
+at all of the elements; this violates our requirement that the method should stop processing as soon as 
+it finds a second matching element.
+
+Our solution approaches this by using an each loop to iterate through the array, and a boolean local 
+variable to keep track of whether we have seen a matching element yet. Each element is, in turn, yielded 
+to the block; if the block returns a falsey value, we begin the next iteration. If the block returns a 
+truthy value, we check to see if we have previously seen a matching element; if we have, we need to 
+return false. Otherwise, we note the fact that we have a matching element, and continue iterating through 
+the array.
+
+Finally, if we make it through all the loop iterations, we return true or false depending on whether we 
+ever had a match.
+=end
