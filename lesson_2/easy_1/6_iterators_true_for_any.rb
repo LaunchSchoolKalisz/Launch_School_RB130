@@ -2,7 +2,7 @@
 Iterators: True for Any?
 A great way to learn about blocks is to implement some of the core ruby methods that use blocks using your 
 own code. Over this exercise and the next several exercises, we will do this for a variety of different 
-  standard methods.
+standard methods.
 
 The Enumerable#any? method processes elements in a collection by passing each element value to a block that 
 is provided in the method call. If the block returns a value of true for any element, then #any? returns 
@@ -29,3 +29,19 @@ any?([1, 3, 5, 7]) { |value| true } == true
 any?([1, 3, 5, 7]) { |value| false } == false
 any?([]) { |value| true } == false
 =end
+
+def any?(array)
+  truthy = array.select do |element|
+    yield(element) == true
+  end
+  return false if truthy.empty?
+  true
+end
+
+p any?([1, 3, 5, 6]) { |value| value.even? } == true
+p any?([1, 3, 5, 7]) { |value| value.even? } == false
+p any?([2, 4, 6, 8]) { |value| value.odd? } == false
+p any?([1, 3, 5, 7]) { |value| value % 5 == 0 } == true
+p any?([1, 3, 5, 7]) { |value| true } == true
+p any?([1, 3, 5, 7]) { |value| false } == false
+p any?([]) { |value| true } == false
