@@ -121,4 +121,41 @@ end
 ENCRYPTED_PIONEERS.each do |encrypted_name|
   puts rot13(encrypted_name)
 end
+
+Discussion
+It's tempting to use a lookup table with a hash to solve this problem, but it's actually easier to use the 
+description of Rot13 directly ("rotate" each character by 13), so that's what we will do.
+
+Our program begins by setting up a constant Array that contains our encrypted list of pioneers.
+
+We will use a method, rot13, to decrypt each name in the list, one at a time, and within that method, we 
+use decipher_character to decrypt each character. We use String#each_char and Enumerable#reduce to 
+iterate through the characters in encrypted_text, and construct the decrypted return value.
+
+decipher_character uses a case statement that breaks the character decryption problem into 3 parts: the 
+letters between A and M, the letters between N and Z, and everything else. Note that we check for both 
+uppercase and lowercase letters because that's what we have to deal with. The first group is easy: we 
+can shift the character 13 places forward ('A' becomes 'N', 'B' becomes 'O', ..., 'M' becomes 'Z'). We 
+do this with String#ord and Integer#chr which convert a character to a numeric value and vice versa. 
+Similarly, we do the same for the 2nd group, but this time we need to shift letters to the left by 13 
+places ('N' becomes 'A', 'O' becomes 'B', etc). Lastly, we can handle everything else by returning the 
+value unchanged.
+
+Once we have all the components in place, all we have to do is iterate through our list of encrypted 
+names, and print each decrypted name.
+
+Further Exploration
+If there is anybody on this list whose name you don't recognize - and there probably are some - you 
+owe it to yourself to look them up. Everybody should be aware of the pioneers in their chosen field, and 
+computing is no different.
+
+Most computers today use a character encoding called ASCII to store the basic set of characters such as 
+latin letters, Arabic digits, and some punctuation. This encoding is convenient in that the lowercase 
+letters all have consecutive values between 97 and 122, while the uppercase letters have consecutive values 
+between 65 and 90. This makes implementation of Rot13 easy.
+
+Not all computers use ASCII. Some mainframes use different schemes such as EBCDIC, which some IBM computers 
+use. EBCDIC is unusual: the alphabetic characters are not all grouped together like in ASCII (see the 
+linked page). How would this impact our implementation of this program if we were running this program on 
+data that uses the EBCDIC representation?
 =end
