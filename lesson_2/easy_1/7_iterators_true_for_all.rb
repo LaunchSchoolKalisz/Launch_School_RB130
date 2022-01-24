@@ -42,3 +42,17 @@ p all?([1, 3, 5, 7]) { |value| value % 5 == 0 } == false
 p all?([1, 3, 5, 7]) { |value| true } == true
 p all?([1, 3, 5, 7]) { |value| false } == false
 p all?([]) { |value| false } == true
+
+=begin
+LS Solution
+
+def all?(collection)
+  collection.each { |item| return false unless yield(item) }
+  true
+end
+
+Discussion
+Our solution is extremely similar to our solution for any?. It simply iterates through our collection, and 
+returns false if it encounters an item that produces a false result when it is yielded to the block. If 
+no such item is encountered, we return true
+=end
