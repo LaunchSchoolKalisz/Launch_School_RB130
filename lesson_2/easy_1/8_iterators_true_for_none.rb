@@ -43,3 +43,43 @@ p none?([1, 3, 5, 7]) { |value| value % 5 == 0 } == false
 p none?([1, 3, 5, 7]) { |value| true } == false
 p none?([1, 3, 5, 7]) { |value| false } == true
 p none?([]) { |value| true } == true
+
+=begin
+LS Solution
+
+def none?(collection)
+  collection.each { |item| return false if yield(item) }
+  true
+end
+
+Alternate solution:
+
+def none?(collection, &block)
+  !any?(collection, &block)
+end
+
+Discussion
+
+The key to this solution is that #none? is merely the opposite of #any?. #any? returns true if the 
+collection contains any matches, false if does not. #none? returns true if the collection does not contain 
+any matches, false if does.
+
+The easiest way to accomplish this is to just modify the #any? method we wrote earlier; instead of 
+returning true from the #each loop, we return false; instead of returning false after the loop, we return 
+true.
+
+However, since #none? is effectively the negation of #any?, you would think that we can write:
+
+def none?(collection)
+  !any?(collection)
+end
+
+However, this fails with a:
+
+no block given (yield) (LocalJumpError)
+
+error message. The reason for this is that blocks aren't passed down the calling chain by default. 
+Instead, you need to explicitly pass the block to #any?; to do that, #none? must require a block argument 
+with an & as shown in the alternate solution. We then pass &block to any?, where it is treated as if the 
+call to any? included the block.
+=end
