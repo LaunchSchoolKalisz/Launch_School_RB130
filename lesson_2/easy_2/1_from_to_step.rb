@@ -30,3 +30,29 @@ def step(first, last, step)
 end
 
 step(1, 10, 3) { |value| puts "value = #{value}" }
+
+=begin
+LS Solution
+
+def step(start_point, end_point, increment)
+  current_value = start_point
+  loop do
+    yield(current_value)
+    break if current_value + increment > end_point
+    current_value += increment
+  end
+  current_value
+end
+
+Discussion
+In this solution start_point is where we begin, end_point is the maximum value to step up to, and increment 
+is the amount we want to step by on each iteration.
+
+current_value is yielded to the block and then incremented on each iteration. We do not want to step beyond 
+end_point, so we exit the loop when current_value + increment > end_point. Finally, we return current_value.
+
+There's no particular reason why we choose to return current_value other than the fact that it is a 
+reasonably sensible value. Range#step returns self (this is, the original Range object), but that doesn't 
+work for us. Another reasonable return value might be nil, or perhaps the last value returned by the block.
+
+=end
