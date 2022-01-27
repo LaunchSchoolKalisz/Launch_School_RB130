@@ -24,3 +24,52 @@ def zip(ary1, ary2)
 end
 
 p zip([1, 2, 3], [4, 5, 6]) == [[1, 4], [2, 5], [3, 6]]
+
+=begin
+LS Solution
+
+def zip(array1, array2)
+  result = []
+  index = 0
+  length = array1.length
+  while index < length
+    result << [array1[index], array2[index]]
+    index += 1
+  end
+  result
+end
+
+Discussion
+In ruby, the hardest part of dealing with two arrays simultaneously is determining how to iterate through 
+those arrays. Almost all of the Array and Enumerable methods only work on one array at a time. Often, the 
+easiest approach is to simply use a loop and two indexes, one that indexes the first array, and one that 
+indexes the second. Fortunately, in this exercise, we have two arrays of equal size, and each time we 
+access the same index, so we can reduce those two indexes to just one.
+
+Once you've settled on the approach, writing the code itself can be easy; this is one such case. All we 
+need to do is set up our result array, initialize the index, iterate, then return the result.
+
+The iteration part of this process is where everything of true importance happens. For this problem, we 
+iterate N times, where N is the number of elements in each of our two arrays. Then, during each iteration, 
+we append the appropriate elements, as a two element Array, to our result array, and increment the index.
+
+This can be simplified somewhat by recognizing that this loop is pretty much what Array#each_with_index 
+does, so we use that:
+
+def zipper(array1, array2)
+  result = []
+  array1.each_with_index do |element, index|
+    result << [element, array2[index]]
+  end
+  result
+end
+
+or, even more succintly,
+
+def zipper(array1, array2)
+  array1.each_with_index.with_object([]) do |(element, index), result|
+    result << [element, array2[index]]
+  end
+end
+
+=end
