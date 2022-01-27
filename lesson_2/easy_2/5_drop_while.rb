@@ -52,3 +52,25 @@ p drop_while([1, 3, 5, 6]) { |value| true } == []
 p drop_while([1, 3, 5, 6]) { |value| false } == [1, 3, 5, 6]
 p drop_while([1, 3, 5, 6]) { |value| value < 5 } == [5, 6]
 p drop_while([]) { |value| true } == []
+
+=begin
+LS Solution
+
+def drop_while(array)
+  index = 0
+  while index < array.size && yield(array[index])
+    index += 1
+  end
+
+  array[index..-1]
+end
+
+Discussion
+While we could use each or each_with_index, our solution employs a simple while loop instead; while makes it 
+obvious that we want to stop prematurely, since we know that we may not be iterating through the entire 
+Array.
+
+Once we've skipped over the elements for which the block returns true, all we need to do is extract the 
+remaining elements from the Array, which we do with array[index..-1]; this slicing syntax extracts a 
+slice of the Array starting at index, and ending with the final element at index -1.
+=end
