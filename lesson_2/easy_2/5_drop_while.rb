@@ -30,3 +30,25 @@ This line in the examples is not a typo:
 
 drop_while([1, 3, 5, 6]) { |value| value.even? } == [1, 3, 5, 6]
 =end
+
+def drop_while(array)
+  first_index = nil
+  array.each_with_index do |element, idx|
+    if yield(element) == false
+      first_index = idx
+      break
+    end
+  end
+  if first_index == nil
+    array = []
+  else
+    array[first_index..-1]
+  end
+end
+
+p drop_while([1, 3, 5, 6]) { |value| value.odd? } == [6]
+p drop_while([1, 3, 5, 6]) { |value| value.even? } == [1, 3, 5, 6]
+p drop_while([1, 3, 5, 6]) { |value| true } == []
+p drop_while([1, 3, 5, 6]) { |value| false } == [1, 3, 5, 6]
+p drop_while([1, 3, 5, 6]) { |value| value < 5 } == [5, 6]
+p drop_while([]) { |value| true } == []
