@@ -14,3 +14,13 @@ Example:
 
 zip([1, 2, 3], [4, 5, 6]) == [[1, 4], [2, 5], [3, 6]]
 =end
+
+def zip(ary1, ary2)
+  new_ary = []
+  0.upto(ary1.size - 1) do |num|
+    new_ary << [ary1[num], ary2[num]]
+  end
+  new_ary
+end
+
+p zip([1, 2, 3], [4, 5, 6]) == [[1, 4], [2, 5], [3, 6]]
