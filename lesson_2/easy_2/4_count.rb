@@ -1,5 +1,6 @@
 =begin
 count
+
 NOTE: This exercise was originally a duplicate from the previous exercise set. We have modified it slightly, 
 but some of the posted solutions still reflect the original wording.
 
@@ -25,3 +26,16 @@ count(1, 3, 6) { |value| true } == 3
 count() { |value| true } == 0
 count(1, 3, 6) { |value| value - 6 } == 3
 =end
+
+def count(*arguments)
+  count = 0
+  arguments.each {|argument| count += 1 if yield(argument)}
+  count
+end
+
+p count(1, 3, 6) { |value| value.odd? } == 2
+p count(1, 3, 6) { |value| value.even? } == 1
+p count(1, 3, 6) { |value| value > 6 } == 0
+p count(1, 3, 6) { |value| true } == 3
+p count() { |value| true } == 0
+p count(1, 3, 6) { |value| value - 6 } == 3
