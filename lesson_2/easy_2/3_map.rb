@@ -41,3 +41,20 @@ p map([]) { |value| true } == []
 p map(['a', 'b', 'c', 'd']) { |value| false } == [false, false, false, false]
 p map(['a', 'b', 'c', 'd']) { |value| value.upcase } == ['A', 'B', 'C', 'D']
 p map([1, 3, 4]) { |value| (1..value).to_a } == [[1], [1, 2, 3], [1, 2, 3, 4]]
+
+=begin
+LS Solution 
+
+def map(array)
+  result = []
+  array.each { |item| result << yield(item) }
+  result
+end
+
+Discussion
+Our solution simply iterates through our array, and appends the return value of yield(item) to our result 
+Array.
+
+Further Exploration
+Does your solution work with other collections like Hashes or Sets?
+=end
