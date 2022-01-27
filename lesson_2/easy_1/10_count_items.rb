@@ -25,3 +25,21 @@ p count([1,2,3,4,5]) { |value| true } == 5
 p count([1,2,3,4,5]) { |value| false } == 0
 p count([]) { |value| value.even? } == 0
 p count(%w(Four score and seven)) { |value| value.size == 5 } == 2
+
+=begin
+LS Solution
+
+def count(array)
+  total = 0
+  array.each { |value| total += 1 if yield value }
+  total
+end
+
+Discussion
+Our solution works by iterating over the values in array, incrementing a counter by 1 each time the block 
+returns true when yielded the current value.
+
+Further Exploration
+Write a version of the count method that meets the conditions of this exercise, but also does not use each, 
+loop, while, or until.
+=end
