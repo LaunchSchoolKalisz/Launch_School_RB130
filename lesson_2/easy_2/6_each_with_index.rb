@@ -29,3 +29,14 @@ should output:
 2 -> 36
 true
 =end
+
+def each_with_index(array)
+  array.each do |ele|
+    yield(ele, array.index(ele))
+  end
+  array
+end
+
+result = each_with_index([1, 3, 6]) do |value, index|
+  puts "#{index} -> #{value**index}"
+end
