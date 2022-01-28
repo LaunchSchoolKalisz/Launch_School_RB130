@@ -40,3 +40,23 @@ end
 result = each_with_index([1, 3, 6]) do |value, index|
   puts "#{index} -> #{value**index}"
 end
+
+=begin
+
+def each_with_index(array)
+  index = 0
+  array.each do |item|
+    yield(item, index)
+    index += 1
+  end
+end
+
+Discussion
+Our solution is simple enough: it uses each to iterate through the Array, while maintaining an index value 
+that can be passed with the element value to the block.
+
+At first glance, it might seem that we're missing a bit here: where's the return value? As usual, every 
+statement in Ruby returns a value, and every method returns the value returned by the last statement 
+executed. In this case, the last statement executed is the each loop, and each returns the Array it is used 
+on, so the return value is array; just what we need.
+=end
