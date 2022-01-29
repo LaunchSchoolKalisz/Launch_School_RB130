@@ -42,3 +42,45 @@ p max_by([1, 5, 3]) { |value| (96 - value).chr } == 1
 p max_by([[1, 2], [3, 4, 5], [6]]) { |value| value.size } == [3, 4, 5]
 p max_by([-7]) { |value| value * 3 } == -7
 p max_by([]) { |value| value + 5 } == nil
+
+=begin
+LS Solution
+
+def max_by(array)
+  return nil if array.empty?
+
+  max_element = array.first
+  largest = yield(max_element)
+
+  array[1..-1].each do |item|
+    yielded_value = yield(item)
+    if largest < yielded_value
+      largest = yielded_value
+      max_element = item
+    end
+  end
+
+  max_element
+end
+
+Discussion
+The first part of our solution simply handles the edge case of an empty Array. According to the 
+requirements, we just need to return nil for an empty Array, so that's what we've done.
+
+The rest of the exercise has two tricky parts: first, we need to select a reasonable initial value to be 
+compared against each block return value, then we need to iterate over the Array while keeping track of 
+both the largest value returned by the block, and the value of the element associated with that largest 
+value.
+
+The first part isn't too bad. Obviously, 0 won't work as the largest value: it would cause the fifth test 
+to fail since -7 < 0. We could also try -Float::INFINITY, which would work in most cases, but what happens 
+if the block returns something other than a number? For instance, our 3rd example has a block that returns 
+Strings, which can't be successfully compared against -Float::INFINITY. The answer is to pass the first 
+item in the Array to the block, and then use the return value as the initial largest value.
+
+The second tricky part also isn't too bad; all we need to do is remember which element returned the largest 
+value to date. We track this element in max_element, which we initialize to the first element of the Array.
+
+Once this plan is in place, all we need to do is iterate through the remaining Array elements and find the 
+largest block return value and its associated element.
+=end
