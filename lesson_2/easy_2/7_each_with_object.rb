@@ -64,3 +64,17 @@ result = each_with_object([], {}) do |value, hash|
   hash[value] = value * 2
 end
 p result == {}
+
+=begin
+LS Solution
+
+def each_with_object(array, object)
+  array.each { |item| yield(item, object) }
+  object
+end
+
+Discussion
+Implementing this method is easier than it sounds. All that stuff about the "object" makes it sound harder 
+than it really is. In fact, all we need to do with that object is yield it (along with the element value) 
+to our block for each element of the Array. At the end, we just need to make sure we return that object.
+=end
