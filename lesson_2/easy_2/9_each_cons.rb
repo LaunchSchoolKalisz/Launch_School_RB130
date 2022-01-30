@@ -65,3 +65,21 @@ result = each_cons(['a', 'b']) do |value1, value2|
 end
 p hash == {'a' => 'b'}
 p result == nil
+
+=begin
+LS Solution
+
+def each_cons(array)
+  array.each_with_index do |item, index|
+    break if index + 1 >= array.size
+    yield(item, array[index + 1])
+  end
+  nil
+end
+
+Discussion
+The hardest part of this exercise is trying to decide when to stop iterating. Obviously, we can't simply 
+iterate over the entire Array, since there are no elements with which to pair the last element if we did. 
+Instead, we need to stop when the current element is the last element, which we can detect by comparing the 
+value of index + 1 against the Array size.
+=end
