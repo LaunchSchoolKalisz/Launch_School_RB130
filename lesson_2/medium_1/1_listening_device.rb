@@ -27,3 +27,29 @@ listener.play # Outputs "Hello World!"
 
 Finish the above program so that the specifications listed above are met.
 =end
+
+class Device
+  def initialize
+    @recordings = []
+  end
+
+  def record(recording)
+    @recordings << recording
+  end
+
+  def listen
+    if block_given?
+      sound = yield
+      record(sound)
+    end
+  end
+
+  def play
+    @recordings.each {|sound| p sound}
+  end
+end
+
+listener = Device.new
+listener.listen { "Hello World!" }
+listener.listen
+listener.play # Outputs "Hello World!"
