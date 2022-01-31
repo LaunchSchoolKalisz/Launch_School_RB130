@@ -64,3 +64,14 @@ number 10 is equivalent to the decimal number 8, octal 20 is the same as decimal
 as decimal 64, and so on. No math is needed for this problem though; see the Approach/Algorithm section for 
 some hints.
 =end
+
+def convert_to_base_8(n)
+  n.to_s(8).to_i # replace these two method calls
+end
+
+# The correct type of argument must be used below
+base8_proc = method(:convert_to_base_8).to_proc
+
+# We'll need a Proc object to make this code work. Replace `a_proc`
+# with the correct object
+p [8, 10, 12, 14, 16, 33].map(&base8_proc)
