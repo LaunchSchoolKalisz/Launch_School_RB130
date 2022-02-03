@@ -1,3 +1,7 @@
+require 'minitest/autorun'
+require "minitest/reporters"
+Minitest::Reporters.use!
+
 class CashRegister
   attr_reader :total_money
 
@@ -22,5 +26,10 @@ class CashRegister
     accept_money(transaction)
     change(transaction)
     give_receipt(transaction)
+  end
+end
+
+class CashRegisterTest < MiniTest::Test
+  def setup
   end
 end
