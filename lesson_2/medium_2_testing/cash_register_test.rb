@@ -201,4 +201,28 @@ modify your code for the additional flexibility, it's not too hard.
 
 The key to solving this exercise lies with this technique. We'll be testing a method defined in the 
 Transaction class. It may be best to include this test in a new test file related to the Transaction class.
+
+LS Solution for Prompt for Payment
+
+require 'minitest/autorun'
+require_relative 'transaction'
+
+class TransactionTest < Minitest::Test
+  def test_prompt_for_payment
+    transaction = Transaction.new(30)
+    input = StringIO.new('30\n')
+    transaction.prompt_for_payment(input: input)
+    assert_equal 30, transaction.amount_paid
+  end
+end
+
+Discussion
+With the description above, this code isn't too difficult to understand. The test first creates a new 
+transaction for an item whose cost is $30. We then create a StringIO object that simulates a keyboard entry 
+of the number 30 followed by a newline character. Next, we pass the StringIO object to the 
+prompt_for_payment method.
+
+Since prompt_for_payment will get its input from the StringIO object, it will act exactly like it would 
+have were we using the keyboard directly. In this case, it will set the amount paid to $30 and return. 
+Finally, we can assert that the right amount was paid.
 =end
