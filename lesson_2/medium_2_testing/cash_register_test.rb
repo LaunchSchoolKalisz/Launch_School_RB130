@@ -110,4 +110,34 @@ In this case, we instead pay 40 dollars for a 30 dollar item. Hopefully we'll be
 We test the actual functionality of our CashRegister#change method with the assertion: assert_equal 10, 
 register.change(transaction).
 We're expecting our change method to give back 10. After running the test it seems to do just that.
+
+LS Solution for test give receipt
+require 'minitest/autorun'
+require_relative 'cash_register'
+require_relative 'transaction'
+
+class CashRegisterTest < Minitest::Test
+
+  # Other tests omitted for brevity
+
+  def test_give_receipt
+    item_cost = 35
+    register = CashRegister.new(1000)
+    transaction = Transaction.new(item_cost)
+    assert_output("You've paid $#{item_cost}.\n") do
+      register.give_receipt(transaction)
+    end
+  end
+end
+Discussion
+For this test, we'll be testing that our method outputs a certain message. To test this, we need to use the 
+assertion, assert_output. Outputting a message is also considered a side effect, so it is something we 
+would want to test. This is especially true since our message should reflect a state of our current 
+transaction. assert_output uses a slightly different syntax than something like assert and assert_equal. 
+We pass in code that will produce the "actual" output via a block. Then, internally assert_ouput compares 
+that output to the expected value passed in as an argument. In this case that expected value is: 
+"You've paid $#{item_cost}.\n" Notice that we include a newline character at the end there. Any little 
+nuances related to the implementation of our method have to be taken into account. puts appends a 
+newline to the message that is output. We must include that newline character in our expected value as 
+well when making an assertion with assert_output.
 =end
