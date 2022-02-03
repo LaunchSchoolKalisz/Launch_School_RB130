@@ -24,7 +24,7 @@ class CashRegisterTest < MiniTest::Test
   end
 
   def test_give_receipt
-    assert_output("You've paid $15.\n") {@register.give_receipt(@transaction)}
+    assert_output("You've paid $#{@transaction.item_cost}.\n") {@register.give_receipt(@transaction)}
   end
 end
 
