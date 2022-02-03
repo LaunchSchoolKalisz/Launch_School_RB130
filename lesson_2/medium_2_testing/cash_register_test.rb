@@ -79,4 +79,31 @@ We test this value by setting variables that represent the money in the register
 transaction takes place. Finally, we implement the approach/algorithm for this exercise with our 
 assertion: assert_equal previous_amount + 20, current_amount. This assertion does indeed pass, and we have 
 finished testing our accept money method.
+
+LS Solution for test Change
+
+require 'minitest/autorun'
+require_relative 'cash_register'
+require_relative 'transaction'
+
+# Other tests omitted for brevity
+
+class CashRegisterTest < Minitest::Test
+  def test_change
+    register = CashRegister.new(1000)
+    transaction = Transaction.new(30)
+    transaction.amount_paid = 40
+
+    assert_equal 10, register.change(transaction)
+  end
+end
+
+Discussion
+For this test we set up our initial objects, one CashRegister object and one Transaction object. We also 
+make sure to set the amount paid. Recall, that in the last exercise we set it up so that the amount paid 
+and the transaction cost were the same.
+In this case, we instead pay 40 dollars for a 30 dollar item. Hopefully we'll be getting some money back! 
+We test the actual functionality of our CashRegister#change method with the assertion: assert_equal 10, 
+register.change(transaction).
+We're expecting our change method to give back 10. After running the test it seems to do just that.
 =end
