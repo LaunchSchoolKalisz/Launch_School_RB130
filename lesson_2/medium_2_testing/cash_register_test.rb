@@ -226,4 +226,51 @@ prompt_for_payment method.
 Since prompt_for_payment will get its input from the StringIO object, it will act exactly like it would 
 have were we using the keyboard directly. In this case, it will set the amount paid to $30 and return. 
 Finally, we can assert that the right amount was paid.
+
+LS Solution for Clean output for prompt for payment
+require 'minitest/autorun'
+require_relative 'transaction'
+
+class TransactionTest < Minitest::Test
+  def test_prompt_for_payment
+    transaction = Transaction.new(30)
+    input = StringIO.new('30')
+    output = StringIO.new
+    transaction.prompt_for_payment(input: input, output: output)
+    assert_equal 30, transaction.amount_paid
+  end
+end
+
+def prompt_for_payment(input: $stdin, output: $stdout)
+  loop do
+    output.puts "You owe $#{item_cost}.\nHow much are you paying?"
+    @amount_paid = input.gets.chomp.to_f
+    break if valid_payment? && sufficient_payment?
+    output.puts 'That is not the correct amount. ' \
+         'Please make sure to pay the full cost.'
+  end
+end
+
+Discussion
+For this exercise we'll have to work on two things. First, we'll create a mock object to use in 
+test_prompt_for_payment. output = StringIO.new Unlike when we created a mock object for input we don't have 
+to set the String for our mock. We'll end up calling StringIO#puts on output and that is what will set the 
+String value for our StringIO mock object. Second, we have to alter the Transaction#prompt_for_payment 
+method to accept a mock of our output. This will work in a similar way to how we mocked the input. We add a 
+new parameter to Transaction#prompt_for_payment that will allow us to pass in an output mock object. def 
+prompt_for_payment(input: $stdin, output: $stdout) Then, we use this output mock object within our method, 
+we call StringIO#puts and the string passed to puts gets stored within the StringIO object. It isn't output 
+to the user. Doing this should allow us to clean up our testing output that displays when running minitest.
+
+Let's run the test again with our output mock:
+
+Run options: --seed 45397
+
+# Running:
+
+.
+
+Finished in 0.000912s, 1096.4154 runs/s, 1096.4154 assertions/s.
+
+1 runs, 1 assertions, 0 failures, 0 errors, 0 skips
 =end
