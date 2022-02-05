@@ -5,11 +5,11 @@ require_relative 'text'
 class TextTest < MiniTest::Test
   def setup
     @file = File.open('sample.txt')
+    @text = Text.new(@file.read)
   end
 
   def test_swap
-    text = Text.new(@file.read)
-    swapped_file = text.swap('a', 'e')
+    swapped_file = @text.swap('a', 'e')
     expected_text = <<~TEXT.chomp
     Lorem ipsum dolor sit emet, consectetur edipiscing elit. Cres sed vulputete ipsum.
     Suspendisse commodo sem ercu. Donec e nisi elit. Nullem eget nisi commodo, volutpet
@@ -20,6 +20,12 @@ class TextTest < MiniTest::Test
     TEXT
 
     assert_equal(expected_text, swapped_file)
+  end
+
+  def test_word_count
+    counted = @text.word_count
+
+    assert_equal(72, counted)
   end
 
   def takedown
