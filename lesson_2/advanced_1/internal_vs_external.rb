@@ -55,3 +55,34 @@ You'll only need 3 Enumerator methods to complete this exercise.
 An Enumerator also implements the Enumerable module. Keep this in mind, as it may make certain parts of this 
 exercise easier to write.
 =end
+
+array = [1, 2, 3, 4, 5, 6, 7]
+num = array.size
+enumerator = array.each
+
+enumerator.each_with_index do |element, idx|
+  result = 1
+end
+
+factorial = Enumerator.new do |to_yield|
+  result = 1
+  number = 0
+  loop do 
+    result = number.zero? ? 1 : result * number
+    to_yield << result
+    number += 1
+  end
+end
+
+6.times {|number| puts "#{number}! == #{factorial.next}"}
+puts "=========================="
+6.times { |number| puts "#{number}! == #{factorial.next}" }
+puts "=========================="
+factorial.rewind
+6.times { |number| puts "#{number}! == #{factorial.next}" }
+puts "=========================="
+
+factorial.each_with_index do |value, number|
+  puts "#{number}! == #{value}"
+  break if number >= 5
+end
