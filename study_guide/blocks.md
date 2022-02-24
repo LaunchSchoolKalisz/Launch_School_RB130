@@ -354,7 +354,7 @@ p min_by(arr) { |str| str.count('a') }  # => 'bbbb'
 
 **Sandwich code** describes methods that need to perform some kind of "before" and "after" actions. This can include timing some process, logging something, or some kind of notification system. It also includes resource management, or interfacing with the operating system. For example, when dealing with files, we first need to allocate memory to open the file. Then, once we do whatever it is we want to do with the file in question, we want to close the file and clean up the memory allocation. Sandwiching a block in between these two steps allows us to automate the set up and clean up process.
 
-![Sandwich Code](./sandwhich_code.jpg)
+![Sandwich Code](./pictures/sandwhich_code.jpg)
 
 The above graphic depicts a method that times and outputs how long _some action_ takes. The method itself does not care about what the action is at all. Its sole purpose is to time the action, and output the time it took to execute the action. We use a block to allow any action the method caller wants to be specified at the time the method is invoked. The implementation of our method times the action, and does not change at all regardless of what the action is.
 
