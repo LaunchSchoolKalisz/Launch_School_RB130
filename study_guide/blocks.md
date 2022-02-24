@@ -55,15 +55,15 @@ This can result in seeming violations of scoping rules for things like local var
 def introduce_yourself(introduction)
   introduction.call
 end
-me = "Ginni"
+me = "Marts"
 my_bit = Proc.new { puts "Hello, my name is #{me}." }
 introduce_yourself(my_bit)
-# Hello, my name is Ginni.
+# Hello, my name is Marts.
 ```
 
-Above, we first initialize local variable `me` and assign it the string object `"Ginni"`. Next, we instantiate a new `Proc` object and assign it to the local variable `my_bit`. Note that the new `Proc` object utilizes a block that accesses the local variable `me`.
+Above, we first initialize local variable `me` and assign it the string object `"Marts"`. Next, we instantiate a new `Proc` object and assign it to the local variable `my_bit`. Note that the new `Proc` object utilizes a block that accesses the local variable `me`.
 
-Next, we pass the `Proc` object referenced by `my_bit` into the method `introduce_yourself`. Within the method, the `Proc` is called, and we get the output `Hello, my name is Ginni`. How does the `Proc` access the value referenced by local variable `me`? By virtue of its **binding**.
+Next, we pass the `Proc` object referenced by `my_bit` into the method `introduce_yourself`. Within the method, the `Proc` is called, and we get the output `Hello, my name is Marts`. How does the `Proc` access the value referenced by local variable `me`? By virtue of its **binding**.
 
 In order for local variables to be a part of a closures binding, **they must be initialized before the closure is created** unless they are explicitly passed into the closure.
 
@@ -74,7 +74,7 @@ def introduce_yourself(introduction)
   introduction.call
 end
 my_bit = Proc.new { puts "Hello, my name is #{me}" }
-me = "Ginni"
+me = "Marts"
 introduce_yourself(my_bit)
 # Raises NameError: undefined local variable or method `me`
 ```
@@ -87,11 +87,11 @@ However, if you initialize a local variable before creating a closure, access it
 def introduce_yourself(introduction)
   introduction.call
 end
-me = "Ginni"
+me = "Marts"
 my_bit = Proc.new { puts "Hello, my name is #{me}" }
-me = "Other Ginni"
+me = "Other Marts"
 introduce_yourself(my_bit)
-# Hello, my name is Other Ginni
+# Hello, my name is Other Marts
 ```
 
 Notice in the above example, how the `Proc` referenced by `my_bit` is aware of the new value assigned to `me`, despite the fact that this reassignment takes place _after the `Proc` is created_.
