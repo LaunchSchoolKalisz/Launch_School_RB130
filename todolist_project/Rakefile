@@ -7,3 +7,6 @@ desc 'Run tests'
 task :test do
   sh 'ruby ./test/todolist_project_test.rb'
 end
+
+desc 'Run tests'
+task :default => :test
