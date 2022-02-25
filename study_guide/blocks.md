@@ -26,7 +26,7 @@ Binding is the relationship that closures share with the surrounding artifacts (
 This **binding** creates an _enclosure_ around all the artifacts (variables, methods, constants) based on the scope when the closure is defined, so that they can be referenced when the closure is executed. That means that closures can use and update local variables that are in scope for them when they are executed, _even if the call for execution comes from a place in the code where these variables are not in scope_.
 
 Example
-```
+```ruby
 def give_name(ele)
   puts ele.call # the local variable `name` is out of scope for the method, but is accessible through binding
 end
@@ -38,7 +38,7 @@ give_name(my_proc)
 This example shows us that a closure (the proc) is bound to the local var name and is able access it even if it is called upon within a method, where local variable are normally not accessable unless explicitly passed in as an argument upon method invocation.
 
 LS Example:
-```
+```ruby
 def for_each_in(arr)
   arr.each { |element| yield element } # the `results` array is out of scope, but is accessible through binding
 end
