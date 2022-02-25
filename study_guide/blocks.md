@@ -17,9 +17,42 @@
 
 ## Closures
 
-A **closure** is an abstract programming concept that exists across multiple languages. It refers to a "chunk of code" that can be saved, somehow, and executed at a later time, possibly from a different location. Closures work by **binding** their _surrounding artifacts_, which can include variables, methods, objects, or other pieces of data and code.
+A **closure** is an abstract programming concept that exists across multiple languages. It refers to a "chunk of code" that can be saved, and executed at a later time, possibly from a different location. Closures work by **binding** their _surrounding artifacts_, which can include variables, methods, objects, or other pieces of data and code.
 
-This **binding** creates an _enclosure_ around all the artifacts so that they can be referenced at such a time as the closure is executed. That means that closures can use and even update local variables that are in scope for them when they are executed, _even if the call for execution comes from a place in the code where these variables are not in scope_.
+Within Ruby, Blocks, Proc objects and Lambda's are all closures.
+
+Binding is the relationship that closures share with the surrounding artifacts (methods, variables, constants) of its scope upon being defined. Closures can access and/or update these artifacts regardless of when or where the closure is called upon later, we call this behavior and relationship, binding.
+
+This **binding** creates an _enclosure_ around all the artifacts (variables, methods, constants) based on the scope when the closure is defined, so that they can be referenced when the closure is executed. That means that closures can use and update local variables that are in scope for them when they are executed, _even if the call for execution comes from a place in the code where these variables are not in scope_.
+
+Example
+```
+def give_name(ele)
+  puts ele.call # the local variable `name` is out of scope for the method, but is accessible through binding
+end
+name = 'Marts'
+my_proc = proc { name }
+
+give_name(my_proc)
+```
+This example shows us that a closure (the proc) is bound to the local var name and is able access it even if it is called upon within a method, where local variable are normally not accessable unless explicitly passed in as an argument upon method invocation.
+
+LS Example:
+```
+def for_each_in(arr)
+  arr.each { |element| yield element } # the `results` array is out of scope, but is accessible through binding
+end
+
+arr = [1, 2, 3, 4, 5]
+results = [0]
+
+for_each_in(arr) do |number|
+  total = results[-1] + number
+  results.push(total)
+end
+
+p results # => [0, 1, 3, 6, 10, 15]
+```
 
 ![Closure](./pictures/closures.jpg)
 
