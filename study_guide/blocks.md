@@ -180,7 +180,7 @@ end
 
 You can pass a block to a method upon invocation at any time. Methods have an implicit parameter allowing them to accept a block at any time. The method will need to be defined in a specific way to access that block, but even if a method is not defined to accept blocks, it will not raise an error when a block is passed in.
 
-To define a method that takes a block, utilize the keyword `yield`. This will execute any block that gets passed to the method in question as an argument. It allows any other person, whether another developer or yourself in the future, to "inject" a section of code into the method that you have defined.
+To define a method that takes a block, utilize the keyword `yield`. This will execute any block that gets passed to the method in question as an argument. `yield` calls implicit and eplicit blocks passed into the method. `yield` can accept arguments and pass them into the block and assign them to the block local variable defined in its parameters. It allows any other person, whether another developer or yourself in the future, to "inject" a section of code into the method that you have defined.
 
 ```ruby
 def execute_block
