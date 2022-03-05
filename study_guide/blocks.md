@@ -74,6 +74,55 @@ When we execute the `Proc`, it has its own private copy of `counter` and `alphab
 
 We also have the capability to invoke `alphabet` again and return a new `Proc` object. When we call `alphabet` and assign the return value to `alpha2` on `line 24`, it represents a second instance of `Proc` that has its own separate copy of local variables `counter` and `letters`. Therefore, when we invoke `Proc#call` on it, we begin again with the letter `'a'`, because `counter` references `0`. In `alpha1`, on the other hand, we will get `'d'` by invoking the `Proc`, because in that case `counter` points to `3`.
 
+It is important to know that closures can be returned from and passed to other methods because this allows us to access data that would usally be out of scope and pass along functionality. This allows for DRY and flexible code. It is also important to remember that closures returned from method and blocks that are defined withing those methods and/or blocks will have access to the artifacts within the scope of those methods and/or blocks, thus allowing the returned closure to reference and/or alter those artifacts at a later time.
+
+Example:
+```ruby
+def retained_array
+  arr = []
+  Proc.new do |el|
+    arr << el
+    arr
+  end
+end
+
+arr = retained_array
+p arr.call('one') #=> ["one"]
+p arr.call('two') #=> ["one", "two"]
+p arr.call('three') #=> ["one", "two", "three"]
+```
+Example:
+```ruby
+def contained_data(password)
+  Proc.new do |new_password|
+    password = new_password unless new_password.nil?
+    password
+  end
+end
+
+marts_password = contained_data("mypass2022")
+p marts_password.call #=> "mypass2022"
+p marts_password.call("betterpass2022") #=> "betterpass2022"
+```
+Example from LS:
+```ruby
+def sequence
+  counter = 0
+  Proc.new { counter += 1 }
+end
+
+s1 = sequence # a unique memory is created and retained of the `counter` var in the `sequence` method
+p s1.call           # => 1
+p s1.call           # => 2
+p s1.call           # => 3
+puts
+
+s2 = sequence #= a new unique memory is created and retained of the `counter` var of the `sequnece` method
+p s2.call           # => 1
+p s1.call           # => 4 (note: this is s1)
+p s2.call           # => 2
+```
+
 ## Variable Scope and Binding
 
 _Quick review_:
