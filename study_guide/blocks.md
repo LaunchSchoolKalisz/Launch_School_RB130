@@ -96,7 +96,7 @@ introduce_yourself(my_bit)
 
 Above, we first initialize local variable `me` and assign it the string object `"Marts"`. Next, we instantiate a new `Proc` object and assign it to the local variable `my_bit`. Note that the new `Proc` object utilizes a block that accesses the local variable `me`.
 
-Next, we pass the `Proc` object referenced by `my_bit` into the method `introduce_yourself`. Within the method, the `Proc` is called, and we get the output `Hello, my name is Marts`. How does the `Proc` access the value referenced by local variable `me`? By virtue of its **binding**.
+Next, we pass the `Proc` object referenced by `my_bit` into the method `introduce_yourself`. Within the method, the `Proc` is called, and we get the output `Hello, my name is Marts`. The `Proc` accesses the value referenced by local variable `me` because of its **binding**.
 
 In order for local variables to be a part of a closures binding, **they must be initialized before the closure is created** unless they are explicitly passed into the closure.
 
@@ -131,7 +131,7 @@ Notice in the above example, how the `Proc` referenced by `my_bit` is aware of t
 
 ## What are Blocks?
 
-In Ruby, **blocks** are sections of code that are surrounded by `do...end` or `{ .. }`. They are passed as arguments to a method call. Any method can accept an implicit block, but only those that implement their execution with some sort of call to `yield` will execute the code inside the given block. How the method which takes the block is implemented determines how the return value of the block is used, if at all.
+In Ruby, **blocks** are sections of code that are surrounded by `do...end` or `{ .. }`. They are passed as arguments to a method call. Any method can accept an implicit block, but only those that implement their execution with some sort of call to `yield` will execute the code inside the given block. How the method which takes the block is implemented determines how the return value of the block is used, if at all. The return value of blocks are determined by the last evaluated line on code within the block.
 
 ```ruby
 # each executes a given block, but ignores its return value
@@ -155,6 +155,26 @@ letter.upcase { puts letter }
 ```
 
 Documentation tells us which methods can utilize a block, and how that block is used by the method.
+
+Reasons to use blocks:
+- we want to delegate the implementation of the method to the caller of the method. The implementor of the method may not know the desired outcome of the code. The method will accept a block that will define the desired outcome of the method. Example:
+
+```ruby
+[1,2,3,4,5].map { |n| n.to_s }
+
+=begin
+The `map` method will iterate through an array and return a new array. The elements that will become the new array is determined by the block passed in by the caller.
+=end
+```
+- we want to have a before and after (sandwich) code within our method. The block will be implemented between the before and after and will return some desired value that is needed for the after. Example:
+
+```ruby
+def some_method(string)
+puts string
+new_string = yield(string)
+puts "#{string} is now #{new_string}!"
+end
+```
 
 ## Writing Methods that take Blocks
 
