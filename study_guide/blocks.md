@@ -178,18 +178,20 @@ end
 
 ## Writing Methods that take Blocks
 
-To define a method that takes a block, utilize the keyword `yield`. This will execute any block that gets passed to the method in question as an argument. Ostensibly, it allows any other person, whether another developer or yourself in the future, to "inject" a section of code into the method that you have defined.
+You can pass a block to a method upon invocation at any time. Methods have an implicit parameter allowing them to accept a block at any time. The method will need to be defined in a specific way to access that block, but even if a method is not defined to accept blocks, it will not raise an error when a block is passed in.
+
+To define a method that takes a block, utilize the keyword `yield`. This will execute any block that gets passed to the method in question as an argument. It allows any other person, whether another developer or yourself in the future, to "inject" a section of code into the method that you have defined.
 
 ```ruby
 def execute_block
   puts "Oh, did someone pass me a block?"
   yield
-  puts "Cool! Well done!"
+  puts "Fab! Nice job!"
 end
-execute_block { puts "Yes sir, and here I am!" }
+execute_block { puts "Yasssss!" }
 # => "Oh, did someone pass me a block?"
-# => "Yes sir, and here I am!"
-# => "Cool! Well done!"
+# => "Yasssss!"
+# => "Fab! Nice job!"
 ```
 
 If a method is implemented with a `yield` statement, but is passed no block, it will result in a `LocalJumpError`
@@ -198,7 +200,7 @@ If a method is implemented with a `yield` statement, but is passed no block, it 
 def execute_block
   puts "Oh, did someone pass me a block?"
   yield
-  puts "Cool! Well done!"
+  puts "Fab! Nice job!"
 end
 execute_block
 # raises: LocalJumpError (no block given (yield))
@@ -210,15 +212,27 @@ Make your `yield` statements more flexible by including them in a conditional th
 def execute_block
   puts "Oh, did someone pass me a block?"
   yield if block_given?
-  puts "Cool! Well done!"
+  puts "Fab! Nice job!"
 end
-execute_block { puts "Yes and here I am!" }
+execute_block { puts "Yasssss!" }
 # Oh, did someone pass me a block?
-# Yes and here I am!
-# Cool! Well done!
+# Yasssss!
+# Fab! Nice job!
 execute_block
 # Oh, did someone pass me a block?
-# Cool! Well done!
+# Fab! Nice job!
+```
+
+We can require a block in a method by using the `yield` keyword in the method definition or if expecting an explicit block then using the `#call` method to call the block (which is now actually a proc) that is assigned to the parameter variable.
+
+```ruby
+def some_method(&block)
+  block.call  #use the Proc#call method to invoke explicit blocks passed in
+end
+
+def some_method_2
+  yield  #use the keyword yield to invoke implicit blocks passed in
+end
 ```
 
 ### Passing Execution to a Block
