@@ -744,9 +744,11 @@ _Blocks_:
 def block_method_1(animal)
   yield
 end
+
 def block_method_2(animal)
   yield(animal)
 end
+
 block_method_1('seal') { |seal| puts "This is a #{seal}." }
 # => This is a .
 block_method_1('seal')
