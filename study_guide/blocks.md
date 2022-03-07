@@ -770,6 +770,7 @@ _Procs_:
 - Can be assigned to a variable and passed around
 - Can be returned by a method and reused
 - Has lenient arity similar to blocks
+- when `return` is explicitly stated, the control will not return to the calling method, but will simply end the calling method
 
 ```ruby
 my_proc = proc { |thing| puts "This is a #{thing}." }
@@ -786,6 +787,7 @@ _Lambdas_:
 - Can be assigned to a variable and passed around
 - Initialized with `Kernel#lambda`, which is equivalent to `Proc.new`, except that the resulting `Proc` objects check the number of parameters passed when called
 - Has strict arity, must be passed the correct number of expected arguments.
+- When `return` is explicitly stated, the control is returned to the calling method
 
 ```ruby
 my_lambda = lambda { |thing| puts "This is a #{thing}." }
