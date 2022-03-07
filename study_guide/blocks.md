@@ -498,7 +498,7 @@ The necessary cleanup of opening a file (closing it) is _automated_ by the imple
 
 ## Explicit Block Parameters
 
-All methods in Ruby can take an implicit block. An implicit block is one that is passed to a method call as an argument, without being named explicitly or assigned to a parameter once passed into the method. Because of this, an implicit block is essentially anonymous. The only way we can handle, or execute, the block within the method is with a call to `yield`, passing along any arguments it may require. We can save its return value into a local variable but not the block itself.
+All methods in Ruby can take an implicit block. An implicit block is one that is passed to a method call as an argument, without being named explicitly or assigned to a parameter once passed into the method. Because of this, an implicit block is essentially anonymous. The only way we can handle, or execute, the block within the method is with a call to `yield`, passing along any arguments it may require. We can save its return value into a local variable. We can not save the block itself.
 
 It is, however, possible to assign an **explicit block** to a parameter. This block gets treated as a _named object_, and therefore can be passed around, referenced, reassigned, invoked multiple times, and manipulated in a way that an implicit block cannot. Essentially, the way we do this is to **convert the block argument into a Proc**.
 
@@ -571,10 +571,12 @@ Let us say that we want to build a simple guessing game. The game will randomly 
 ```ruby
 class Guesser
   attr_reader :range, :tester
+
   def initialize(range, &tester) # note the block is always last parameter
     # saves the resulting Proc to instance variable tester
     @range, @tester = range, tester
   end
+
   def take_a_guess
     guess = range.to_a.sample
     if tester.call(guess) # execute the block and pass guess as argument
@@ -583,6 +585,7 @@ class Guesser
       puts "Boo hoo, my guess #{guess} was wrong."
     end
   end
+  
 end
 # local variable `guess` from take_a_guess is assigned to block parameter `g`
 # the block here will get assigned to @tester
