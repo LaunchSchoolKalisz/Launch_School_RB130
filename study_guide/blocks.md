@@ -382,7 +382,7 @@ Here, we are dealing with strings. Just as before, each string is yielded to the
 
 ### Return Value of a Block
 
-Like methods, blocks have a return value and this is determined by the last expression in the block. Whatever that expression evaluates to will be implicitly returned by the block. This value can be captures and utilized when execution returns to the method implementation that yielded to the block.
+Like methods, blocks have a return value and this is determined by the last expression in the block. Whatever that expression evaluates to will be implicitly returned by the block. This value can be captured and utilized when execution returns to the method implementation that yielded to the block.
 
 We can capture the return value of a block by assigning it to a local variable inside the method. This value, then, can be called up at any time and evaluated or manipulated.
 
@@ -428,10 +428,12 @@ def before_and_after(obj)
   after = yield(obj)      # capture the return value of the block
   puts "After: #{after}"
 end
+
 # this is bad (returns meaningful value and performs mutation):
 before_and_after('hello') { |word| word.upcase! }
 # Before: hello
 # After: HELLO
+
 # this is good:
 before_and_after('hello') { |word| word.upcase }
 # Before: hello
@@ -442,7 +444,7 @@ before_and_after('hello') { |word| word.upcase }
 
 ### Defer Implementation
 
-If you have a case where you are trying to implement a method, and you are not 100% sure of how it will be called during invocation time, you can leave this ambiguity to be decided at invocation time in the form of a block. A scenario like this might look like a method that you are calling from multiple places, with one little tweak in each place. Instead of defining a bunch of similar yet different methods, try to define a single method in a more general way, and leave the "tweaks" to be executed by a block during method invocation.
+When you would like to implement a method, but are not certain how it will be called when it is invoked, you don't have to decide, as you can allow it to be decided at invocation in the form of a block. For example, you may call a method from multiple places, with a little tweak in each place. Instead of defining a bunch of similar yet different methods, try to define a single method in a more general way, and leave the "tweaks" to be executed by a block during method invocation.
 
 Take the example of methods like `min_by`. `min_by` returns the minimum element in a collection _based on the return value of a given block_. This means that instead of only being able to return the absolute minimum value, we can specify the means by which we would like to determine "minimum". It might be the shortest length of a string, the word with the least amount of vowels, or any number of different criteria. The point is, we don't have to define this criteria _until we invoke the method_. Further, once this criteria is defined, _it does not affect the other implementation steps of the method_.
 
