@@ -129,6 +129,8 @@ _Quick review_:
 
 A block creates a new scope for local variables (this is really only applicable to local variables). A local variable initialized in outer scope is available to a block. A local variable initialized in inner scope is not available in outer scope.
 
+Local variables have precidence if variables and methods have the same name.
+
 [Closures](#closures) keep track of the local variables that are in scope for them via a **binding**. A **binding** consists of the _surrounding environment_ or _context_ for a closure. This can include local variables, method calls/references, constants, or any other kind of artifacts. Basically, the closure will **bind** and drag around with it anything it needs to function correctly.
 
 This can result in seeming violations of scoping rules for things like local variables. Let us use the example of a `Proc`, which is an object that gets explicitly passed into a method. Recall that to execute a `Proc` object we use the `Proc#call` method:
