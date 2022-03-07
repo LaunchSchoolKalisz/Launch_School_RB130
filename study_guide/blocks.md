@@ -585,7 +585,7 @@ class Guesser
       puts "Boo hoo, my guess #{guess} was wrong."
     end
   end
-  
+
 end
 # local variable `guess` from take_a_guess is assigned to block parameter `g`
 # the block here will get assigned to @tester
@@ -684,12 +684,15 @@ Methods have **strict arity**. This means that you must pass the exact number of
 def no_arguments
   puts "I take no arguments"
 end
+
 def one_argument(str)
   puts "I take one argument: #{str}"
 end
+
 def two_arguments(str1, str2)
   puts "I take two arguments: #{str1} and #{str2}"
 end
+
 no_arguments              # I take no arguments
 no_arguments('hi')        # ArgumentError
 no_arguments ('a', 'b')   # ArgumentError
@@ -708,6 +711,7 @@ def test
   # pass only one argument to a block
   yield('hello')
 end
+
 # define a block with two parameters
 test { |a, b| puts "a: #{a}, b: #{b}" }
 # Output:
