@@ -126,7 +126,7 @@ When run, it will generate a file within a `coverage` directory that details all
 
 ## Skip
 
-The `skip` keyword is a special keyword we can use with [Minitest](#minitest) test. It tells minitest to skip to the next test when it encounters it. This will be reported in the output of minitest with an `S`. We have the ability to pass a string into `skip` should we want to display a custom message.
+**skip** = The `skip` keyword is a special keyword we can use with [Minitest](#minitest) test. It tells minitest to skip to the next test when it encounters it. This will be reported in the output of minitest with an `S`. We have the ability to pass a string into `skip` should we want to display a custom message.
 
 ## Test
 
