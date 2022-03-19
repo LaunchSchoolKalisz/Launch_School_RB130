@@ -26,3 +26,5 @@ end
 
 each([1, 2, 3, 4, 5]) {|num| "Do nothing"}.select { |num| num.odd? }
 # => [1, 3, 5]
+
+# Example 
