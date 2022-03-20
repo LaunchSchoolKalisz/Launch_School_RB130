@@ -47,7 +47,7 @@ hash == {}
 def each_cons(array, n)
   array.each_index do |index|
     break if index + n - 1 >= array.size
-    yield(*array[index..(index + n - 1)])
+    yield(*array[index..(index + n - 1)])  # Splat operator allows us to determine # of elements
   end
   nil
 end
