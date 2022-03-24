@@ -90,6 +90,12 @@ arr = retained_array
 p arr.call('one') #=> ["one"]
 p arr.call('two') #=> ["one", "two"]
 p arr.call('three') #=> ["one", "two", "three"]
+
+# vs
+
+p retained_array.call('one') #=> ["one"]
+p retained_array.call('two') #=> ["two"]
+p retained_array.call('three') #=> ["three"]
 ```
 Example:
 ```ruby
