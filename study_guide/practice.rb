@@ -1,24 +1,37 @@
 =begin
-Passing Parameters Part 1
+Passing Parameters Part 2
+Ruby gives us a lot of flexibility when assigning arrays to variables. If we want to assign the entire 
+array to a single variable, we can do that:
 
-Modify the method below so that the display/output of items is moved to a block, and its implementation 
-is left up to the user of the gather method.
+birds = %w(raven finch hawk eagle)
+p birds # => ['raven','finch','hawk','eagle']
+If we want to assign every element to a separate variable, we can do that too:
 
-items = ['apples', 'corn', 'cabbage', 'wheat']
+raven, finch, hawk, eagle = %w(raven finch hawk eagle)
+p raven # => 'raven'
+p finch # => 'finch'
+p hawk # => 'hawk'
+p eagle # => 'eagle'
+Suppose we want to organize our array contents into groups, where variables represent category names. 
+Can we do that without extracting items directly from the array based on their indices?
 
-def gather(items)
-  puts "Let's start gathering food."
-  puts "#{items.join(', ')}"
-  puts "Nice selection of food we have gathered!"
-end
+We can use the splat operator(*) to do something like this:
+
+raven, finch, *raptors = %w(raven finch hawk eagle)
+p raven # => 'raven'
+p finch # => 'finch'
+p raptors  # => ['hawk','eagle']
+
+Based on the examples shown above, write a method that takes an array as an argument. The method 
+should yield the contents of the array to a block, which should assign your block variables in such a 
+way that it ignores the first two elements, and groups all remaining elements as a raptors array.
 =end
 
-items = ['apples', 'corn', 'cabbage', 'wheat']
-
-def gather(items)
-  puts "Let's start gathering food."
-  yield(items)
-  puts "Nice selection of food we have gathered!"
+def organize(array)
+  yield(array)
 end
 
-gather(items) {puts items.join(', ')}
+organize(['raven', 'finch', 'hawk', 'eagle']) do |array|
+  ignore, ignore, *raptors = array
+  p raptors
+end
