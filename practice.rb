@@ -1,20 +1,24 @@
+watering_needs = "low"
 
-
-plants_info = [["peace lily", "medium"], ["rubber plant, medium"], ["bonsai", "high"], ["succulant", "low"]]
-
-def plant_mom(plant_info)
-  plant, watering_needs = plant_info[0], plant_info[1]
   case watering_needs
   when "low"
     watering_needs = "1"
+    me = "marts"
   when "medium"
     watering_needs = "3"
+    me = "paige"
   when "high"
     watering_needs = "5"
+    me = "ben"
   end
-  p plant_info #
-  puts plants_info
-  "We should water the #{plant} #{watering_needs} times this week."
-end
 
-puts plant_mom(plants_info[3]) # => We should water the succulant 1 times this week.
+puts watering_needs
+puts me
+
+arr = [1, 2, 3]
+
+# for i in arr do
+#   a = 5      # a is initialized here
+# end
+
+# puts a       # is it accessible here?
