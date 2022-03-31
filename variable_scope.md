@@ -15,13 +15,13 @@ CONSTANT = "Availability: e v e r y w h e r e"
 ```
 
 ### Global Variables 
-Global variables have (surprise!) global scope, meaning that they can be accessed and changed throughout the scopes of the program. Global variables are not commonly used, as unexpected challenges can arise. 
+Global variables have (surprise!) global scope, meaning that they can be accessed and changed throughout the scopes of the program. Global variables are not commonly used, as unexpected challenges can arise with being able to change a variable anywhere in the program. 
 ```ruby
 $global_var = "Availability: e v e r y w h e r e"
 ```
 
 ### Class Variables
-Class variables become a bit more complex. They are available throughout a class, and are available to use by instance variables as well as the class itself. However, they must be initialized at the level of the class itself. They can then be changed by class or instance methods.
+Class variables are available throughout a class, and are available to use by instance variables as well as the class itself. However, they must be initialized at the level of the class itself. They can then be changed by class or instance methods.
 ```ruby
 @@confusion_level = 0
 ```
@@ -29,7 +29,7 @@ Class variables become a bit more complex. They are available throughout a class
 ### Instance Variables 
 Instance variables are available during an instance of a class. 
 ```ruby
-@confusion_level = "Availability: "
+@instance_var = "Availability: "
 ```
 
 ### Local variables
@@ -44,6 +44,58 @@ What a perfect seguay to begin to discuss how scopes are created...
 
 In Ruby, variable scope is defined by a *method definition* or a *block*. 
 
+A key to keep in mind when discussing scope in ruby is that an inner scope can access variables initialized in an outer scope, but an outer scope cannot accss variables initialized in an inner scope.
 
+### Methods
+A method's scope is *self-contained*, meaning it cannot access local variables which were intitialized outside of it. When a variable is initialized within the body of the method, it can be referenced or modified from within the body of the method. Variables initialized within the self-contained scope are not availble outside of the body of the method. So how can methods access variables? We can initialize them within the body of the method, or we can pass them into the method as parameters.
+
+```ruby
+plants_info = [["peace lily", "medium"], ["rubber plant, medium"], ["bonsai", "high"], ["succulant", "low"]]
+
+def plant_mom(plant_info)
+  plant, watering_needs = plant_info[0], plant_info[1]
+  case watering_needs
+  when "low"
+    watering_needs = "1"
+  when "medium"
+    watering_needs = "3"
+  when "high"
+    watering_needs = "5"
+  end
+  "We should water the #{plant} #{watering_needs} times this week."
+end
+
+puts plant_mom(plants_info[3]) # => We should water the succulant 1 times this week.
+p plants_info # => [["peace lily", "medium"], ["rubber plant, medium"], ["bonsai", "high"], ["succulant", "low"]]
+
+plants_info = [["peace lily", "medium"], ["rubber plant, medium"], ["bonsai", "high"], ["succulant", "low"]]
+
+def plant_mom(plant_info)
+  case plant_info[1]
+  when "low"
+    plant_info[1] = "1"
+  when "medium"
+    plant_info[1] = "3"
+  when "high"
+    plant_info[1] = "5"
+  end
+  "We should water the #{plant_info[0]} #{plant_info[1]} times this week."
+end
+
+puts plant_mom(plants_info[3]) # => We should water the succulant 1 times this week.
+p plants_info # => [["peace lily", "medium"], ["rubber plant, medium"], ["bonsai", "high"], ["succulant", "1"]]
+
+```
+
+### Blocks
+Blocks are designated by `do..end` or `{}` and they create a new scope for local variables. A variable's scope is determined by where it is initialized. We are able to change variables from an inner scope, and that change can effect the outer scope, so naming variables correctly is important. 
+
+```ruby
+islands = ["Big Island", "Kauai", "Maui", "Nihaau"]
+
+loop do # the do..end block follows invocation of the loop methid, and creates a new scope
+end
+
+```
 
 ## Method Definition, Method Invocation & Scope
