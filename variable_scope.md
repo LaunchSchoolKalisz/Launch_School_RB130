@@ -64,6 +64,7 @@ def plant_mom(plant_info)
   when "high"
     watering_needs = "5"
   end
+
   p plant_info # ==> ["succulant", "low"]
   p plants_info # raises an error! NameError undefined local variable or method `plants_info' for main:Object
   "We should water the #{plant} #{watering_needs} times this week."
@@ -72,7 +73,7 @@ end
 puts plant_mom(plants_info[3])
 ```
 
-In the example above, we initialize a local variable on `line 1` to a nested array. On `lines 55-66` we define a method called `plant_mom` which accepts 1 parameter. By defining a method, we create a self-contained scope
+In the example above, we initialize a local variable called `plants_info` on `line 1` to a nested array. On `lines 55-66` we define a method called `plant_mom` which accepts 1 parameter. By defining a method, we create a self-contained scope, meaning that we can only access variables which are initialized inside of the method body, or variables that are passed into the method. We want to give `plant_mom` access to our `plants_info` so we know how much our precious plants need to be watered. 
 
 
 ```ruby
