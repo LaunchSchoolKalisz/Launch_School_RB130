@@ -6,10 +6,10 @@ Use codes examples with explanations to support the discussion.
 ## Types of Variables
 When discussing variable scope in Ruby, it is important to first understand the types of variables that we will be working with. This is because the type of variable will effect the scoping rules to be followed. There are 5 types of variables in Ruby: constants, global variables, class variables, instance variables, and local variables. A brief discription of each will follow.
 
-Of note, local variables are very commonly used, as they have a narrow scope. Using local variables can help to avoid naming difficulties in a program due to their narrow scope. Rubyists must be cautious when naming and using variables with a more broad scope, such as constants or global variables.
+Of note, local variables are very commonly used, as they have a narrow scope. Using local variables can help to avoid naming difficulties in a program due to their narrow scope. Rubyists must be cautious when naming and using variables with a more broad scope, such as constants or global variables. 
 
 ### Constants 
-Constants should not be changed (although, Ruby does allow them to be changed after giving a warning). They are available throughout the scopes of the program. 
+Constants should not be changed (although, Ruby does allow them to be changed after giving a warning). They are available throughout the scopes of the program and have a lexical scope. 
 ```ruby
 CONSTANT = "Availability: e v e r y w h e r e"
 ```
@@ -38,7 +38,7 @@ Local variables can be accessed and changed locally. This means that the variabl
 variable = "Availability: Within the scope I was defined." 
 ```
 
-What a perfect seguay to begin to discuss how scopes are created...
+The majority of this discussion will discuss scope as it relates to local variables, as local variables follow all of the scoping rules, wehere as the other variable types do not (as discussed above). What a perfect seguay to begin to discuss how scopes are created...
 
 ## Creating Scope
 
@@ -48,6 +48,32 @@ A key to keep in mind when discussing scope in ruby is that an inner scope can a
 
 ### Methods
 A method's scope is *self-contained*, meaning it cannot access local variables which were intitialized outside of it. When a variable is initialized within the body of the method, it can be referenced or modified from within the body of the method. Variables initialized within the self-contained scope are not availble outside of the body of the method. So how can methods access variables? We can initialize them within the body of the method, or we can pass them into the method as parameters.
+
+Let's work with an example to solidify how method definition effects the scope of a local variable:
+
+```ruby
+plants_info = [["peace lily", "medium"], ["rubber plant, medium"], ["bonsai", "high"], ["succulant", "low"]]
+
+def plant_mom(plant_info)
+  plant, watering_needs = plant_info[0], plant_info[1]
+  case watering_needs
+  when "low"
+    watering_needs = "1"
+  when "medium"
+    watering_needs = "3"
+  when "high"
+    watering_needs = "5"
+  end
+  p plant_info # ==> ["succulant", "low"]
+  p plants_info # raises an error! NameError undefined local variable or method `plants_info' for main:Object
+  "We should water the #{plant} #{watering_needs} times this week."
+end
+
+puts plant_mom(plants_info[3])
+```
+
+In the example above, we initialize a local variable on `line 1` to a nested array. On `lines 55-66` we define a method called `plant_mom` which accepts 1 parameter. By defining a method, we create a self-contained scope
+
 
 ```ruby
 plants_info = [["peace lily", "medium"], ["rubber plant, medium"], ["bonsai", "high"], ["succulant", "low"]]
@@ -67,7 +93,9 @@ end
 
 puts plant_mom(plants_info[3]) # => We should water the succulant 1 times this week.
 p plants_info # => [["peace lily", "medium"], ["rubber plant, medium"], ["bonsai", "high"], ["succulant", "low"]]
+```
 
+```ruby
 plants_info = [["peace lily", "medium"], ["rubber plant, medium"], ["bonsai", "high"], ["succulant", "low"]]
 
 def plant_mom(plant_info)
@@ -84,7 +112,6 @@ end
 
 puts plant_mom(plants_info[3]) # => We should water the succulant 1 times this week.
 p plants_info # => [["peace lily", "medium"], ["rubber plant, medium"], ["bonsai", "high"], ["succulant", "1"]]
-
 ```
 
 ### Blocks
