@@ -1,6 +1,6 @@
 # Binding in Ruby
 
-In this article, we will discuss binding and how it affects scope. If you would like a refresher on variable scope before tackling a more advanced topic, please see my previous article [here](./variable_scope.md). Before we can dive into binding, however, we must first understand closures, so a brief introduction to closures, first. 
+In this article, we will discuss binding and how it affects scope. If you would like a refresher on variable scope before tackling a more advanced topic, please see my previous article [here](./variable_scope.md). Before we can dive into binding, we must first understand closures, so a brief introduction to closures first. 
 
 A closure is a general programming concept, which exists across languages. It refers to a "chunk of code" that can be saved, and executed later, possibly from a different location. Closures work by *binding* their _surrounding artifacts_, which can include variables, methods, or other pieces of data. Binding is the relationship that closures share with the surrounding artifacts (methods, variables, constants) of its scope upon being defined. Closures can access and/or update surrounding artifacts regardless of when or where the closure is called upon later. Binding creates an enclosure around all the artifacts (variables, methods, constants) based on the scope when the closure is defined, so that they can be referenced when the closure is executed. 
 
