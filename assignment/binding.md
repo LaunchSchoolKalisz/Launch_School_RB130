@@ -22,7 +22,7 @@ give_info(my_proc)
 
 In this example, we define a method `give_info` on `lines 1-3` with 1 parameter. We initialize a local variable `number` on `line 4`, which is out of scope for the `give_info` method. On `line 5` we define a Proc object and assign it to local variable `my_proc` so that we can pass it around later. By defining a Proc object, we create a closure, which creates a binding around all of the objects within its scope. In this case the local variable `number` and the method `give_info` are in scope for the Proc at that time and are part of its binding. Therefore, when we invoke the `give_info` method on `line 7` and pass in our proc as its argument, the `give_info` method has access to the local variable `number` through `my_proc`.  This example shows us that a closure (the proc) is bound to the local variable `number` and is able access it even if it is called upon within a method, where local variable are normally not accessible unless explicitly passed in as an argument upon method invocation. 
 
-For local variables to be a part of a closures binding, *they must be initialized before the closure is created* unless they are explicitly passed into the closure. For example:
+For local variables to be a part of a closures binding, **they must be initialized before the closure is created** unless they are explicitly passed into the closure. For example:
 
 ```ruby
 def give_info(element)
