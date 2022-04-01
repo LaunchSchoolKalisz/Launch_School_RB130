@@ -1,24 +1,19 @@
-watering_needs = "low"
+islands = ["The Big Island", "Kauai", "Maui", "Nihaau"]
+# # adjective = "green"
 
-  case watering_needs
-  when "low"
-    watering_needs = "1"
-    me = "marts"
-  when "medium"
-    watering_needs = "3"
-    me = "paige"
-  when "high"
-    watering_needs = "5"
-    me = "ben"
-  end
-
-puts watering_needs
-puts me
-
-arr = [1, 2, 3]
-
-# for i in arr do
-#   a = 5      # a is initialized here
+# islands.each do |island| 
+#   adjective = "beautiful" 
+#   puts "#{island} is the most #{adjective} of all of the Hawaiian Islands."
 # end
 
-# puts a       # is it accessible here?
+# puts adjective
+
+island = "Kauai"
+count = 0 
+while count < 4 do 
+  adjective = "beautiful" 
+  puts "#{island} is the most #{adjective} of all of the Hawaiian Islands."
+  count += 1
+end
+
+puts adjective
