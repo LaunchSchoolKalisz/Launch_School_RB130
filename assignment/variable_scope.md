@@ -39,12 +39,12 @@ Much of this discussion will discuss scope as it relates to local variables, as 
 
 ## Creating Scope
 
-In Ruby, variable scope is defined by a *method definition* or a *block*. 
+In Ruby, variable scope is defined by a **method definition** or a **block**. 
 
 A key to keep in mind when discussing scope in ruby is that an inner scope can access variables initialized in an outer scope, but an outer scope cannot access variables initialized in an inner scope.
 
 ### Methods
-A method's scope is *self-contained*, meaning it cannot access local variables which were initialized outside of it. When a variable is initialized within the body of the method, it can be referenced or modified from within the body of the method. Variables initialized within the self-contained scope are not available outside of the body of the method. So how can methods access variables? We can initialize them within the body of the method, or we can pass them into the method as parameters.
+A method's scope is **self-contained**, meaning it cannot access local variables which were initialized outside of it. When a variable is initialized within the body of the method, it can be referenced or modified from within the body of the method. Variables initialized within the self-contained scope are not available outside of the body of the method. So how can methods access variables? We can initialize them within the body of the method, or we can pass them into the method as parameters.
 
 Let's work with an example to solidify how method definition effects the scope of a local variable:
 
