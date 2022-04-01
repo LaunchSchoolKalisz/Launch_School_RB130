@@ -18,13 +18,13 @@ $global_var = "Availability: e v e r y w h e r e"
 ```
 
 ### Class Variables
-Class variables are available throughout a class and are available to use by instance variables as well as the class itself. However, they must be initialized at the level of the class itself. They can then be changed by class or instance methods.
+Class variables are available throughout a class and are available to use by instance variables as well as the class itself. However, they must be initialized at the level of the class itself. They can then be changed by class or instance methods. Class variables are shared by all instances of that class.
 ```ruby
 @@confusion_level = 0
 ```
 
 ### Instance Variables 
-Instance variables are available during an instance of a class. 
+Instance variables are available during an instance of a class. Therefore, each individual object of the class can have their own personalized instance variables (i.e. 2 members of a dog class can have different instance variables called `@name` with 2 different names assigned to them.)
 ```ruby
 @instance_var = "Availability: During the current instance of the class"
 ```
